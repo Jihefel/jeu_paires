@@ -21146,9 +21146,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@font-face {
+  font-family: "Olarwe";
+  src: url(../../public/fonts/OlarweRegular-nRev1.ttf);
+}
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  color: #d6c255;
+  background-image: url(../../public/img/AOC-Header-Portrait-Front-min.jpg);
+  font-family: "Olarwe";
+  position: relative;
 }
 body video {
   position: fixed;
@@ -21158,31 +21166,65 @@ body video {
   min-height: 100%;
   z-index: -1;
 }
-
-section {
+body .grosseRow {
   width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+body .grosseRow .col-10, body .grosseRow .col-12 {
   height: 100%;
 }
-section .grille {
+
+.jeu {
   width: 60%;
-  height: 80%;
-  padding: 3%;
-  background-color: rgba(255, 255, 255, 0.2862745098);
-  gap: 3%;
+  height: 100%;
 }
-section .grille .carte {
-  width: 30%;
+.jeu .grille {
+  width: 90%;
+  height: 80%;
+  background-color: rgba(214, 195, 85, 0.0392156863);
+}
+.jeu .grille .ligneCarte {
   height: 50%;
 }
-section .grille .carte .double-face {
-  height: 100%;
+.jeu .grille .ligneCarte .col {
+  display: flex;
+  align-items: center;
 }
-section .grille .carte .double-face .face {
-  height: 100%;
+.jeu .grille .ligneCarte .col .carte {
   width: 100%;
-}
-section .grille .carte .double-face .face img {
   height: 100%;
+  cursor: pointer;
+  justify-content: center;
+}
+.jeu .grille .ligneCarte .col .carte .double-face {
+  height: 90%;
+}
+.jeu .grille .ligneCarte .col .carte .double-face .face {
+  height: 100%;
+}
+
+#topWrapper {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+}
+#topWrapper .backTop {
+  padding: 10px;
+  height: 60px;
+  width: 50%;
+  background-color: rgba(214, 195, 85, 0.1215686275);
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  margin: auto;
+}
+#topWrapper .backTop #btnAfficher {
+  color: #d6c255;
+  border: 1px solid #d6c255;
+}
+#topWrapper .backTop #btnAfficher:hover {
+  background-color: rgba(214, 195, 85, 0.4117647059);
+  color: #d6a255;
 }
 
 /*# sourceMappingURL=style.css.map */

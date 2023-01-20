@@ -11,74 +11,118 @@
 </head>
 
 <body>
-    <video autoplay muted loop id="videoBg">
+    <!-- <video autoplay muted loop id="videoBg">
         <source src="./public/video/AOC-Header-Portrait-Front.mp4" type="video/mp4">
-    </video>
-
-    <section class="mx-auto d-flex align-items-center justify-content-center">
-        <div class="grille d-flex flex-wrap justify-content-center align-items-center">
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Headhunterz-min.jpg">
-                    </div>
-                </div>
+    </video> -->
+    <section id="topWrapper">
+        <div class="backTop">
+            <div id="chrono" class="d-flex justify-content-center align-items-center gap-5">
+                <div><span id="minutes">00</span>:<span id="seconds">00</span>.<span id="millis">000</span></div>
+                <button id="btnAfficher" class="btn">Afficher le tableau des scores</button>
             </div>
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png" alt="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="carte">
-                <div class="double-face">
-                    <div class="arriere"></div>
-                    <div class="face">
-                        <img src="./public/img/AOC-Artist-Front-Headhunterz-min.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
+    <div class="grosseRow row d-flex align-items-center">
+        <div class="col-12 d-flex" id="partieJeu">
+            <div class="jeu mx-auto d-flex align-items-center justify-content-center">
+                <div class="grille row d-flex gap-3">
+                    <div class="ligneCarte row row-cols-3 mt-2">
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div style="height: 10px; width: 100%;"></div> -->
+
+                    <div class="ligneCarte row row-cols-3">
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="arriere d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-none" id="partieScore">
+            <div id="scores">
+                <table class="text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="fs-5">Tableau des scores</th>
+                        </tr>
+                        <tr>
+                            <th>Pseudo</th>
+                            <th>Temps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>aaa</td>
+                            <td>20s</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- Script JS Bootstrap -->
     <script src='./node_modules/bootstrap/dist/js/bootstrap.bundle.js'></script>
 </body>
 <!-- Import JS -->
-<script src="./public/js/main.js" type="module"></script>
+<script src="./public/js/main.js"></script>
 
 </html>

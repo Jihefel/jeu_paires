@@ -1,6 +1,14 @@
+@font-face
+    font-family: "Olarwe"
+    src: url(../../public/fonts/OlarweRegular-nRev1.ttf)
+    
 body
-    width: 100vw
-    height: 100vh
+    width: 100%
+    min-height: 100vh
+    color: #d6c255
+    background-image: url(../../public/img/AOC-Header-Portrait-Front-min.jpg)
+    font-family: "Olarwe"
+    position: relative
 
     video
         position: fixed
@@ -9,3 +17,10 @@ body
         min-width: 100%
         min-height: 100%
         z-index: -1
+    
+    .grosseRow
+        width: 100%
+        height: 100vh
+        margin: 0
+        .col-10, .col-12
+            height: 100%

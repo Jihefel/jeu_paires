@@ -1,22 +1,24 @@
-section
-    width: 100%
+.jeu
+    width: 60%
     height: 100%
 
     .grille
-        width: 60%
+        width: 90%
         height: 80%
-        padding: 3%
-        background-color: #ffffff49
-        gap: 3%
+        background-color: #d6c3550a
     
-        .carte
-            width: 30%
+        .ligneCarte
             height: 50%
-            .double-face
-                height: 100%
-                .face
-                    height: 100%
+            .col
+                display: flex
+                align-items: center
+                .carte
                     width: 100%
-                    img
-                        height: 100%
+                    height: 100%
+                    cursor: pointer
+                    justify-content: center
+                    .double-face
+                        height: 90%
+                        .face
+                            height: 100%
 
