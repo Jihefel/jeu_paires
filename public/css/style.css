@@ -21154,7 +21154,6 @@ body {
   width: 100%;
   min-height: 100vh;
   color: #d6c255;
-  background-image: url(../../public/img/AOC-Header-Portrait-Front-min.jpg);
   font-family: "Olarwe";
   position: relative;
 }
@@ -21166,12 +21165,12 @@ body video {
   min-height: 100%;
   z-index: -1;
 }
-body .grosseRow {
+body .container-fluid, body .container-sm, body .container-md, body .container-lg, body .container-xl, body .container-xxl {
   width: 100%;
   height: 100vh;
   margin: 0;
 }
-body .grosseRow .col-10, body .grosseRow .col-12 {
+body .container-fluid .col-10, body .container-sm .col-10, body .container-md .col-10, body .container-lg .col-10, body .container-xl .col-10, body .container-xxl .col-10, body .container-fluid .col-12, body .container-sm .col-12, body .container-md .col-12, body .container-lg .col-12, body .container-xl .col-12, body .container-xxl .col-12 {
   height: 100%;
 }
 
@@ -21182,7 +21181,6 @@ body .grosseRow .col-10, body .grosseRow .col-12 {
 .jeu .grille {
   width: 90%;
   height: 80%;
-  background-color: rgba(214, 195, 85, 0.0392156863);
 }
 .jeu .grille .ligneCarte {
   height: 50%;
@@ -21196,14 +21194,47 @@ body .grosseRow .col-10, body .grosseRow .col-12 {
   height: 100%;
   cursor: pointer;
   justify-content: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 .jeu .grille .ligneCarte .col .carte .double-face {
   height: 90%;
 }
-.jeu .grille .ligneCarte .col .carte .double-face .face {
+.jeu .grille .ligneCarte .col .carte .double-face .face, .jeu .grille .ligneCarte .col .carte .double-face .dos {
   height: 100%;
+  filter: drop-shadow(0 0 3px #d6c255);
+  width: 100%;
+  transition: 0.5s;
+}
+.jeu .grille .ligneCarte .col .carte .double-face .face:hover, .jeu .grille .ligneCarte .col .carte .double-face .dos:hover {
+  filter: drop-shadow(0 0 10px #d6c255);
+}
+.jeu .grille .ligneCarte .col .carte .double-face .face {
+  transform: rotateY(-180deg);
+}
+.jeu .grille .ligneCarte .col .retourneDos {
+  animation: retourneDos 1s ease-in-out forwards;
+}
+.jeu .grille .ligneCarte .col .retourneFace {
+  animation: retourneFace 1s ease-in-out forwards;
 }
 
+@keyframes retourneDos {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes retourneFace {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
 #topWrapper {
   width: 100%;
   height: 30px;
@@ -21213,18 +21244,23 @@ body .grosseRow .col-10, body .grosseRow .col-12 {
   padding: 10px;
   height: 60px;
   width: 50%;
-  background-color: rgba(214, 195, 85, 0.1215686275);
+  background-color: rgba(214, 195, 85, 0.1568627451);
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px;
   margin: auto;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 5px #d6c255;
+  color: white;
 }
 #topWrapper .backTop #btnAfficher {
   color: #d6c255;
   border: 1px solid #d6c255;
+  transition: 0.7s;
 }
 #topWrapper .backTop #btnAfficher:hover {
-  background-color: rgba(214, 195, 85, 0.4117647059);
-  color: #d6a255;
+  background-color: rgba(214, 195, 85, 0.2117647059);
+  color: white;
+  border: 1px solid white;
 }
 
 /*# sourceMappingURL=style.css.map */

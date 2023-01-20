@@ -5,7 +5,6 @@
     .grille
         width: 90%
         height: 80%
-        background-color: #d6c3550a
     
         .ligneCarte
             height: 50%
@@ -17,8 +16,42 @@
                     height: 100%
                     cursor: pointer
                     justify-content: center
+                    transform-style: preserve-3d
+                    perspective: 1000px
                     .double-face
                         height: 90%
-                        .face
+                        .face, .dos
                             height: 100%
+                            filter: drop-shadow(0 0 3px #d6c255)
+                            width: 100%
+                            transition: 0.5s
+                            &:hover
+                                filter: drop-shadow(0 0 10px #d6c255)
+                        .face
+                            transform: rotateY(-180deg)
+                            // pointer-events: none
+                            
+                .retourneDos
+                    animation: retourneDos 1s ease-in-out forwards
+                .retourneFace
+                    animation: retourneFace 1s ease-in-out forwards
+                    
+                
+
+
+
+@keyframes retourneDos
+    0%
+        transform: rotateY(0deg)
+    100%
+        transform: rotateY(180deg)
+
+@keyframes retourneFace
+    0%
+        transform: rotateY(180deg)
+    100%
+        transform: rotateY(0deg)
+  
+
+
 

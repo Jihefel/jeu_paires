@@ -11,47 +11,48 @@
 </head>
 
 <body>
-    <!-- <video autoplay muted loop id="videoBg">
+    <video autoplay muted loop id="videoBg">
         <source src="./public/video/AOC-Header-Portrait-Front.mp4" type="video/mp4">
-    </video> -->
+    </video>
     <section id="topWrapper">
         <div class="backTop">
-            <div id="chrono" class="d-flex justify-content-center align-items-center gap-5">
-                <div><span id="minutes">00</span>:<span id="seconds">00</span>.<span id="millis">000</span></div>
+            <div id="top" class="d-flex justify-content-center align-items-center gap-5">
+                <div>
+                    <span id="chrono">00:00</span>
+                </div>
                 <button id="btnAfficher" class="btn">Afficher le tableau des scores</button>
             </div>
         </div>
     </section>
-    <div class="grosseRow row d-flex align-items-center">
+    <div class="container-fluid row d-flex align-items-center">
         <div class="col-12 d-flex" id="partieJeu">
             <div class="jeu mx-auto d-flex align-items-center justify-content-center">
                 <div class="grille row d-flex gap-3">
                     <div class="ligneCarte row row-cols-3 mt-2">
                         <div class="col">
-                            <div class="carte">
+                            <div class="carte" id="carte1">
+                                <div class="double-face position-relative">
+                                    <div class="dos d-flex justify-content-center "></div>
+                                    <div class="face d-flex justify-content-center  d-none">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte" id="carte2">
                                 <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte">
+                            <div class="carte" id="carte3">
                                 <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
 
                                     </div>
                                 </div>
@@ -63,30 +64,30 @@
 
                     <div class="ligneCarte row row-cols-3">
                         <div class="col">
-                            <div class="carte">
+                            <div class="carte" id="carte4">
                                 <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte">
+                            <div class="carte" id="carte5">
                                 <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte">
+                            <div class="carte" id="carte6">
                                 <div class="double-face">
-                                    <div class="arriere d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
 
                                     </div>
                                 </div>
