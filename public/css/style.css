@@ -21218,6 +21218,9 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
 .jeu .grille .ligneCarte .col .retourneFace {
   animation: retourneFace 1s ease-in-out forwards;
 }
+.jeu .grille .ligneCarte .col .match {
+  animation: matchHello 0.5s ease-in-out 0s forwards, matchBye 2s ease-in-out 0.7s forwards;
+}
 
 @keyframes retourneDos {
   0% {
@@ -21233,6 +21236,30 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   }
   100% {
     transform: rotateY(0deg);
+  }
+}
+@keyframes matchHello {
+  0% {
+    filter: drop-shadow(0 0 0 black);
+  }
+  33% {
+    filter: drop-shadow(0 0 10px #d6c255);
+  }
+  66% {
+    filter: drop-shadow(0 0 0px black);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px #d6c255);
+  }
+}
+@keyframes matchBye {
+  0% {
+    transform: rotateY(0deg) translateY(0%);
+    display: flex;
+  }
+  100% {
+    transform: rotateY(1440deg) translateY(-500%);
+    display: none;
   }
 }
 #topWrapper {

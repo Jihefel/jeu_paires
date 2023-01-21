@@ -97,8 +97,31 @@ const displayNone = (element1, element2) => {
   }
 };
 
+let cartesTrouvees = [];
+let trouve = false;
+
+const verifCartes = (carte1, carte2) => {
+  if (carte1.nextElementSibling.style.backgroundImage === carte2.nextElementSibling.style.backgroundImage) {
+    cartesTrouvees.push(carte1.parentNode, carte2.parentNode);
+    console.log(cartesTrouvees);
+
+    setTimeout(() => {
+      cartesTrouvees.forEach(carte => {
+        // carte.style.visibility = "hidden";
+        carte.style.opacity = "50%";
+        carte.style.pointerEvents = "none"
+        carte.parentNode.style.cursor = "default"
+        carte.parentNode.classList.add("match")
+        return trouve = true;
+      });
+      console.log("ok");
+    }, 2000);
+  }
+  trouve = false;
+}
+
+
 const retournement = (e) => {
-  console.log(clic);
   // Impossible de recliquer sur la même carte
   if (
     !e.target.classList.contains("face") &&
@@ -131,36 +154,53 @@ const retournement = (e) => {
     clic += 1;
 
     if (clic == 2) {
-      setTimeout(() => {
-        retourneFace(e);
-        retourneDos(e);
-
+      verifCartes(e.target, quellesCartesCliquees[0])
+      
         setTimeout(() => {
-          displayNone(e.target, quellesCartesCliquees[0]);
-        }, 500);
-        
-      }, 2000);
-
-      setTimeout(() => {
-        retourneFace(e);
-        carteCliquee = null;
-        clic -= 2;
-        quellesCartesCliquees = [];
-      }, 3000);
+          console.log(trouve);
+          if (trouve === true) {
+              trouve = false;
+              carteCliquee = null;
+              clic -= 2;
+              quellesCartesCliquees = [];
+          } else {
+              retourneFace(e);
+              retourneDos(e);
+              
+              setTimeout(() => {
+                displayNone(e.target, quellesCartesCliquees[0]);
+              }, 500);
+            
+            setTimeout(() => {
+              retourneFace(e);
+              carteCliquee = null;
+              clic -= 2;
+              quellesCartesCliquees = [];
+            }, 1000);
+          }
+          trouve = false;
+        }, 2000);
     }
   }
 };
 
 Array.from(cartes).forEach((carte) => {
   carte.addEventListener("click", (e) => {
-    console.log(carteClick, carteCliquee, clic);
     if (carteClick === false && clic < 2) {
       retournement(e);
+      demarrer()
     }
   });
 });
 
 /*****/
+
+
+
+
+
+
+
 
 /* CHRONO */
 let minutes = 0;
@@ -224,4 +264,4 @@ const reset = () => {
   clearTimeout(timeout);
 };
 
-demarrer();
+
