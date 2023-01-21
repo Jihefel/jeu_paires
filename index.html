@@ -11,8 +11,7 @@
 </head>
 
 <body>
-    <video autoplay muted loop id="videoBg">
-        <source src="./public/video/AOC-Header-Portrait-Front.mp4" type="video/mp4">
+    <video autoplay loop id="videoBg" src="./public/video/AOC-Header-Portrait-Front.mp4">
     </video>
     <section id="topWrapper">
         <div class="backTop">
@@ -25,12 +24,28 @@
         </div>
     </section>
     <div class="container-fluid row d-flex align-items-center">
-        <div class="col-12 d-flex" id="partieJeu">
+        <div class="col-12 d-flex align-items-center justify-content-center" id="start">
+            <div class="input-group justify-content-center align-items-center" id="input-group">
+                <label for="pseudo" class="fs-4 me-4 fw-bold">Entrez votre pseudo :</label>
+                <input type="text" aria-label="Pseudo" aria-describedby="validPseudo" class="fs-5 px-3 py-1"
+                    id="pseudo">
+                <button class="btn" type="button" id="validPseudo">Valider</button>
+            </div>
+            <div id="difficulty" class="d-none flex-column align-items-center justify-content-center">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select-difficulty">
+                    <option selected>Choisissez votre niveau de difficulté</option>
+                    <option value="normal">Normal</option>
+                    <option value="difficile">Difficile</option>
+                </select>
+                <button class="btn" id="valid-difficulty">Valider</button>
+            </div>
+        </div>
+        <div class="col-12 d-none opacity-100" id="partieJeu">
             <div class="jeu mx-auto d-flex align-items-center justify-content-center">
                 <div class="grille row d-flex gap-3 justify-content-center">
-                    <div class="ligneCarte row row-cols-3 mt-2">
+                    <div class="ligneCarte row row-cols-4 mt-2">
                         <div class="col">
-                            <div class="carte" id="carte1">
+                            <div class="carte">
                                 <div class="double-face position-relative">
                                     <div class="dos d-flex justify-content-center "></div>
                                     <div class="face d-flex justify-content-center  d-none">
@@ -39,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte" id="carte2">
+                            <div class="carte">
                                 <div class="double-face">
                                     <div class="dos d-flex justify-content-center"></div>
                                     <div class="face d-flex justify-content-center d-none">
@@ -49,7 +64,17 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte" id="carte3">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte derniere">
                                 <div class="double-face">
                                     <div class="dos d-flex justify-content-center"></div>
                                     <div class="face d-flex justify-content-center d-none">
@@ -62,9 +87,9 @@
 
                     <!-- <div style="height: 10px; width: 100%;"></div> -->
 
-                    <div class="ligneCarte row row-cols-3">
+                    <div class="ligneCarte row row-cols-4">
                         <div class="col">
-                            <div class="carte" id="carte4">
+                            <div class="carte">
                                 <div class="double-face">
                                     <div class="dos d-flex justify-content-center"></div>
                                     <div class="face d-flex justify-content-center d-none">
@@ -74,7 +99,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte" id="carte5">
+                            <div class="carte">
                                 <div class="double-face">
                                     <div class="dos d-flex justify-content-center"></div>
                                     <div class="face d-flex justify-content-center d-none">
@@ -84,7 +109,17 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="carte" id="carte6">
+                            <div class="carte">
+                                <div class="double-face">
+                                    <div class="dos d-flex justify-content-center"></div>
+                                    <div class="face d-flex justify-content-center d-none">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="carte derniere">
                                 <div class="double-face">
                                     <div class="dos d-flex justify-content-center"></div>
                                     <div class="face d-flex justify-content-center d-none">

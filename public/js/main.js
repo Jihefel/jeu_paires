@@ -5,25 +5,153 @@ let imagesFace = [
   "./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png",
   "./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg",
   "./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg",
+  "./public/img/AOC-Artist-Front-Project-One-min.jpg",
+  "./public/img/AOC-Artist-Front-Project-One-min.jpg",
 ];
 
-const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3")
+// Déclaration audio
+const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3");
+headhunterz.volume = 0.25;
+
 const noisecontrollers = new Audio("../public/audio/noisecontrollers.mp3");
-noisecontrollers.volume = 0.3;
-const hover = new Audio("../public/audio/hover.mp3")
-hover.volume = 0.1
+noisecontrollers.volume = 0.1;
 
+const projectOne = new Audio("../public/audio/projectOne.mp3");
+projectOne.volume = 0.25;
 
+const hover = new Audio("../public/audio/hover.mp3");
+hover.volume = 0.02;
 
 // Déclarations getElement et query
+const videoBg = document.getElementById("videoBg");
+const container = document.querySelector(".container-fluid");
+const start = document.getElementById("start");
+const inputGroup = document.getElementById("input-group");
+const inputPseudo = document.getElementById("pseudo");
+const validPseudo = document.getElementById("validPseudo");
+const difficulty = document.getElementById("difficulty");
+const selectDifficulty = document.getElementById("select-difficulty");
+const validDifficulty = document.getElementById("valid-difficulty");
+const chrono = document.getElementById("chrono");
+const lignesCartes = document.querySelectorAll(".ligneCarte");
 const faces = document.getElementsByClassName("face");
 const dos = document.getElementsByClassName("dos");
 const doubleFace = document.getElementsByClassName("double-face");
-const cartes = document.getElementsByClassName("carte");
+let cartes = document.getElementsByClassName("carte");
+const dernieresCartes = document.getElementsByClassName("derniere");
 const btnAfficherTableau = document.getElementById("btnAfficher");
 const partieScore = document.getElementById("partieScore");
 const partieJeu = document.getElementById("partieJeu");
-const chrono = document.getElementById("chrono");
+let dernieresCol = [];
+for (let i = 0; i < lignesCartes.length; i++) {
+  dernieresCol.push(lignesCartes[i].lastElementChild);
+}
+console.log(dernieresCol);
+
+function toggleClass(element, classe) {
+  element.classList.toggle(classe);
+}
+
+function removeAddClass(element, classe1, classe2) {
+  element.classList.remove(classe1);
+  element.classList.add(classe2);
+}
+
+/*****/
+let pseudo;
+
+const setPseudo = () => {
+  pseudo = inputPseudo.value;
+  inputPseudo.value = "";
+  toggleClass(inputGroup,"d-none");
+  removeAddClass(difficulty,"d-none","d-flex");
+};
+
+
+const videoPreGame = () => {
+  videoBg.volume = 0.3;
+  videoBg.removeAttribute("loop");
+    videoBg.src = "./public/video/ArtOfCreation.mp4"
+    videoBg.load()
+    toggleClass(partieJeu, "d-none");
+    removeAddClass(partieJeu, "opacity-100", "opacity-0");
+    Array.from(cartes).forEach(carte => {
+      carte.classList.add("apparition")
+    });
+    setTimeout(() => {
+      removeAddClass(partieJeu, "opacity-0", "opacity-100");
+    }, 5000);
+    setTimeout(() => {
+      videoBg.setAttribute("muted","muted")
+      videoBg.setAttribute("loop","loop")
+      videoBg.src = "./public/video/AOC-Header-Portrait-Front.mp4"
+      videoBg.load()
+      Array.from(cartes).forEach(carte => {
+        carte.classList.remove("apparition")
+      });
+      // setTimeout(() => {
+    // }, 5000);
+  }, 10000);
+}
+
+
+
+const setDifficulty = () => {
+  switch (selectDifficulty.value) {
+    // Mode normal
+    case "normal":
+      lignesCartes.forEach((ligne) => {
+        if (ligne.classList.contains("row-cols-4")) {
+          removeAddClass(ligne, "row-cols-4", "row-cols-3");
+        }
+      });
+      // Suppression de Project One
+      imagesFace.splice(6, 2);
+      // Suppression des 2 cartes supplémentaires
+      dernieresCol.forEach((col) => {
+        col.style.display = "none";
+      });
+      videoPreGame()
+      removeAddClass(difficulty,"d-flex", "d-none");
+      // Suppression des dernières
+      Array.from(dernieresCartes).forEach((carte) => {
+        carte.remove();
+      });
+      break;
+      
+      // Mode difficile
+      case "difficile":
+        lignesCartes.forEach((ligne) => {
+          if (ligne.classList.contains("row-cols-3")) {
+            removeAddClass(ligne,"row-cols-3", "row-cols-4");
+          }
+        });
+        videoPreGame()
+        removeAddClass(difficulty,"d-flex", "d-none");
+      imagesFace = [
+        "./public/img/AOC-Artist-Front-Headhunterz-min.jpg",
+        "./public/img/AOC-Artist-Front-Headhunterz-min.jpg",
+        "./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png",
+        "./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png",
+        "./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg",
+        "./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg",
+        "./public/img/AOC-Artist-Front-Project-One-min.jpg",
+        "./public/img/AOC-Artist-Front-Project-One-min.jpg",
+      ];
+      break;
+
+    default:
+      return;
+  }
+  bgDos();
+  bgFace();
+  container.style.backgroundColor = "transparent";
+
+    removeAddClass(start, "d-flex", "d-none");
+};
+
+validPseudo.addEventListener("click", setPseudo);
+validDifficulty.addEventListener("click", setDifficulty);
 
 /*****/
 const bgDos = () => {
@@ -34,7 +162,6 @@ const bgDos = () => {
     dos.style.backgroundPosition = "center";
   });
 };
-bgDos();
 
 const bgFace = () => {
   Array.from(faces).forEach((face) => {
@@ -46,17 +173,22 @@ const bgFace = () => {
     imagesFace.splice(random, 1);
   });
 };
-bgFace();
 /*****/
 
 /*****/
 const afficherTab = () => {
-  if (partieJeu.classList.contains("col-10")) {
-    partieJeu.classList.remove("col-10");
-    partieJeu.classList.add("col-12");
-  } else if (partieJeu.classList.contains("col-12")) {
-    partieJeu.classList.add("col-10");
-    partieJeu.classList.remove("col-12");
+  if (
+    partieJeu.classList.contains("col-10") ||
+    start.classList.contains("col-10")
+  ) {
+    removeAddClass(partieJeu,"col-10", "col-12");
+    removeAddClass(start,"col-10", "col-12");
+  } else if (
+    partieJeu.classList.contains("col-12") ||
+    start.classList.contains("col-12")
+    ) {
+    removeAddClass(partieJeu,"col-12", "col-10");
+    removeAddClass(start,"col-12", "col-10");
   }
 
   partieScore.classList.toggle("d-none");
@@ -98,13 +230,19 @@ const displayNone = (element1, element2) => {
 
 let cartesTrouvees = [];
 let trouve = false;
-let bgCarteMatch
+let bgCarteMatch;
 
 const verifCartes = (carte1, carte2) => {
-  if (carte1.nextElementSibling.style.backgroundImage === carte2.nextElementSibling.style.backgroundImage) {
+  if (
+    carte1.nextElementSibling.style.backgroundImage ===
+    carte2.nextElementSibling.style.backgroundImage
+  ) {
     cartesTrouvees.push(carte1.parentNode, carte2.parentNode);
-    bgCarteMatch = carte1.nextElementSibling.style.backgroundImage.substring(5,carte1.nextElementSibling.style.backgroundImage.length-2)
-    
+    bgCarteMatch = carte1.nextElementSibling.style.backgroundImage.substring(
+      5,
+      carte1.nextElementSibling.style.backgroundImage.length - 2
+    );
+    // Audio quand match
     setTimeout(() => {
       switch (true) {
         case bgCarteMatch.toLowerCase().includes("headhunterz"):
@@ -113,27 +251,31 @@ const verifCartes = (carte1, carte2) => {
         case bgCarteMatch.toLowerCase().includes("noisecontrollers"):
           noisecontrollers.play();
           break;
-      
+        case bgCarteMatch.toLowerCase().includes("wildstylez"):
+          // wildstylez.play();
+          break;
+        case bgCarteMatch.toLowerCase().includes("project"):
+          projectOne.play();
+          break;
+
         default:
           break;
       }
     }, 1700);
 
     setTimeout(() => {
-      cartesTrouvees.forEach(carte => {
-        // carte.style.visibility = "hidden";
-        carte.style.opacity = "50%";
-        carte.style.pointerEvents = "none"
-        carte.parentNode.style.cursor = "default"
-        carte.parentNode.classList.add("match")
-        return trouve = true;
+      cartesTrouvees.forEach((carte) => {
+        carte.style.opacity = "70%";
+        carte.style.pointerEvents = "none";
+        carte.parentNode.style.cursor = "default";
+        carte.parentNode.classList.add("match");
+        return (trouve = true);
       });
       console.log("ok");
-    }, 2000);
+    }, 1500);
   }
   trouve = false;
-}
-
+};
 
 const retournement = (e) => {
   // Impossible de recliquer sur la même carte
@@ -145,8 +287,6 @@ const retournement = (e) => {
     !e.target.classList.contains("retourneDos")
   ) {
     if (carteCliquee === e.target) {
-      console.log("stop");
-      // carteCliquee = null;
       return;
     }
     carteCliquee = e.target;
@@ -163,37 +303,37 @@ const retournement = (e) => {
 
     setTimeout(() => {
       displayNone(e.target);
-    }, 500);
+    }, 400);
 
     clic += 1;
 
     if (clic == 2) {
-      verifCartes(e.target, quellesCartesCliquees[0])
-      
-        setTimeout(() => {
-          console.log(trouve);
-          if (trouve === true) {
-              trouve = false;
-              carteCliquee = null;
-              clic -= 2;
-              quellesCartesCliquees = [];
-          } else {
-              retourneFace(e);
-              retourneDos(e);
-              
-              setTimeout(() => {
-                displayNone(e.target, quellesCartesCliquees[0]);
-              }, 500);
-            
-            setTimeout(() => {
-              retourneFace(e);
-              carteCliquee = null;
-              clic -= 2;
-              quellesCartesCliquees = [];
-            }, 1000);
-          }
+      verifCartes(e.target, quellesCartesCliquees[0]);
+
+      setTimeout(() => {
+        console.log(trouve);
+        if (trouve === true) {
           trouve = false;
-        }, 2000);
+          carteCliquee = null;
+          clic -= 2;
+          quellesCartesCliquees = [];
+        } else {
+          retourneFace(e);
+          retourneDos(e);
+
+          setTimeout(() => {
+            displayNone(e.target, quellesCartesCliquees[0]);
+          }, 400);
+
+          setTimeout(() => {
+            retourneFace(e);
+            carteCliquee = null;
+            clic -= 2;
+            quellesCartesCliquees = [];
+          }, 1000);
+        }
+        trouve = false;
+      }, 1500);
     }
   }
 };
@@ -202,22 +342,15 @@ Array.from(cartes).forEach((carte) => {
   carte.addEventListener("click", (e) => {
     if (carteClick === false && clic < 2) {
       retournement(e);
-      demarrer()
+      demarrer();
     }
   });
   carte.addEventListener("mouseenter", () => {
-    hover.play()
+    hover.play();
   });
 });
 
 /*****/
-
-
-
-
-
-
-
 
 /* CHRONO */
 let minutes = 0;
@@ -280,5 +413,3 @@ const reset = () => {
   secondes = 0;
   clearTimeout(timeout);
 };
-
-
