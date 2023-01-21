@@ -42,11 +42,26 @@ const dernieresCartes = document.getElementsByClassName("derniere");
 const btnAfficherTableau = document.getElementById("btnAfficher");
 const partieScore = document.getElementById("partieScore");
 const partieJeu = document.getElementById("partieJeu");
+let joueurs = document.querySelectorAll("tbody > tr");
+let pseudoTableau = [];
+joueurs.forEach((joueur) => {
+  pseudoTableau.push(joueur.firstElementChild);
+});
+let tempsTableau = [];
+joueurs.forEach((joueur) => {
+  tempsTableau.push(joueur.firstElementChild.nextElementSibling);
+});
+let difficulteTableau = [];
+joueurs.forEach((joueur) => {
+  difficulteTableau.push(joueur.lastElementChild);
+});
+
+console.log(difficulteTableau);
+
 let dernieresCol = [];
 for (let i = 0; i < lignesCartes.length; i++) {
   dernieresCol.push(lignesCartes[i].lastElementChild);
 }
-console.log(dernieresCol);
 
 function toggleClass(element, classe) {
   element.classList.toggle(classe);
@@ -57,49 +72,65 @@ function removeAddClass(element, classe1, classe2) {
   element.classList.add(classe2);
 }
 
+
+
 /*****/
 let pseudo;
+let ligneJoueur = 0;
 
 const setPseudo = () => {
-  pseudo = inputPseudo.value;
-  inputPseudo.value = "";
-  toggleClass(inputGroup,"d-none");
-  removeAddClass(difficulty,"d-none","d-flex");
+  if (
+    inputPseudo.value === "" ||
+    inputPseudo.value === null ||
+    inputPseudo.value === undefined ||
+    inputPseudo.value.length < 4
+  ) {
+    inputPseudo.placeholder = "Insérez un pseudo plus grand";
+    inputPseudo.value = "";
+    return;
+  } else {
+    pseudo = inputPseudo.value;
+    pseudo = pseudo.charAt(0).toUpperCase() + pseudo.substring(1).toLowerCase();
+    pseudoTableau[ligneJoueur].textContent = pseudo;
+    inputPseudo.value = "";
+    toggleClass(inputGroup, "d-none");
+    removeAddClass(difficulty, "d-none", "d-flex");
+  }
 };
-
 
 const videoPreGame = () => {
   videoBg.volume = 0.3;
   videoBg.removeAttribute("loop");
-    videoBg.src = "./public/video/ArtOfCreation.mp4"
-    videoBg.load()
-    toggleClass(partieJeu, "d-none");
-    removeAddClass(partieJeu, "opacity-100", "opacity-0");
-    Array.from(cartes).forEach(carte => {
-      carte.classList.add("apparition")
+  videoBg.src = "./public/video/ArtOfCreation.mp4";
+  videoBg.load();
+  toggleClass(partieJeu, "d-none");
+  removeAddClass(partieJeu, "opacity-100", "opacity-0");
+  Array.from(cartes).forEach((carte) => {
+    carte.classList.add("apparition");
+  });
+  setTimeout(() => {
+    removeAddClass(partieJeu, "opacity-0", "opacity-100");
+  }, 5000);
+  setTimeout(() => {
+    videoBg.setAttribute("muted", "muted");
+    videoBg.setAttribute("loop", "loop");
+    videoBg.src = "./public/video/AOC-Header-Portrait-Front.mp4";
+    videoBg.load();
+    Array.from(cartes).forEach((carte) => {
+      carte.classList.remove("apparition");
     });
-    setTimeout(() => {
-      removeAddClass(partieJeu, "opacity-0", "opacity-100");
-    }, 5000);
-    setTimeout(() => {
-      videoBg.setAttribute("muted","muted")
-      videoBg.setAttribute("loop","loop")
-      videoBg.src = "./public/video/AOC-Header-Portrait-Front.mp4"
-      videoBg.load()
-      Array.from(cartes).forEach(carte => {
-        carte.classList.remove("apparition")
-      });
-      // setTimeout(() => {
+    // setTimeout(() => {
     // }, 5000);
   }, 10000);
-}
+};
 
-
+let nombreCartesATrouver;
 
 const setDifficulty = () => {
   switch (selectDifficulty.value) {
     // Mode normal
     case "normal":
+      difficulteTableau[ligneJoueur].textContent = "Normal";
       lignesCartes.forEach((ligne) => {
         if (ligne.classList.contains("row-cols-4")) {
           removeAddClass(ligne, "row-cols-4", "row-cols-3");
@@ -111,23 +142,25 @@ const setDifficulty = () => {
       dernieresCol.forEach((col) => {
         col.style.display = "none";
       });
-      videoPreGame()
-      removeAddClass(difficulty,"d-flex", "d-none");
+      videoPreGame();
+      removeAddClass(difficulty, "d-flex", "d-none");
       // Suppression des dernières
       Array.from(dernieresCartes).forEach((carte) => {
         carte.remove();
       });
+      nombreCartesATrouver = imagesFace.length;
       break;
-      
-      // Mode difficile
-      case "difficile":
-        lignesCartes.forEach((ligne) => {
-          if (ligne.classList.contains("row-cols-3")) {
-            removeAddClass(ligne,"row-cols-3", "row-cols-4");
-          }
-        });
-        videoPreGame()
-        removeAddClass(difficulty,"d-flex", "d-none");
+
+    // Mode difficile
+    case "difficile":
+      difficulteTableau[ligneJoueur].textContent = "Difficile";
+      lignesCartes.forEach((ligne) => {
+        if (ligne.classList.contains("row-cols-3")) {
+          removeAddClass(ligne, "row-cols-3", "row-cols-4");
+        }
+      });
+      videoPreGame();
+      removeAddClass(difficulty, "d-flex", "d-none");
       imagesFace = [
         "./public/img/AOC-Artist-Front-Headhunterz-min.jpg",
         "./public/img/AOC-Artist-Front-Headhunterz-min.jpg",
@@ -138,6 +171,7 @@ const setDifficulty = () => {
         "./public/img/AOC-Artist-Front-Project-One-min.jpg",
         "./public/img/AOC-Artist-Front-Project-One-min.jpg",
       ];
+      nombreCartesATrouver = imagesFace.length;
       break;
 
     default:
@@ -145,9 +179,9 @@ const setDifficulty = () => {
   }
   bgDos();
   bgFace();
-  container.style.backgroundColor = "transparent";
-
-    removeAddClass(start, "d-flex", "d-none");
+  console.log(nombreCartesATrouver);
+  container.style.background = "transparent";
+  removeAddClass(start, "d-flex", "d-none");
 };
 
 validPseudo.addEventListener("click", setPseudo);
@@ -181,14 +215,14 @@ const afficherTab = () => {
     partieJeu.classList.contains("col-10") ||
     start.classList.contains("col-10")
   ) {
-    removeAddClass(partieJeu,"col-10", "col-12");
-    removeAddClass(start,"col-10", "col-12");
+    removeAddClass(partieJeu, "col-10", "col-12");
+    removeAddClass(start, "col-10", "col-12");
   } else if (
     partieJeu.classList.contains("col-12") ||
     start.classList.contains("col-12")
-    ) {
-    removeAddClass(partieJeu,"col-12", "col-10");
-    removeAddClass(start,"col-12", "col-10");
+  ) {
+    removeAddClass(partieJeu, "col-12", "col-10");
+    removeAddClass(start, "col-12", "col-10");
   }
 
   partieScore.classList.toggle("d-none");
@@ -230,7 +264,6 @@ const displayNone = (element1, element2) => {
 
 let cartesTrouvees = [];
 let trouve = false;
-let bgCarteMatch;
 
 const verifCartes = (carte1, carte2) => {
   if (
@@ -242,6 +275,13 @@ const verifCartes = (carte1, carte2) => {
       5,
       carte1.nextElementSibling.style.backgroundImage.length - 2
     );
+    nombreCartesATrouver -= 2
+    if (nombreCartesATrouver === 0) {
+      setTimeout(() => {
+        arreter()
+        tempsTableau[ligneJoueur].textContent = chrono.textContent
+      }, 3000);
+    }
     // Audio quand match
     setTimeout(() => {
       switch (true) {
@@ -349,7 +389,6 @@ Array.from(cartes).forEach((carte) => {
     hover.play();
   });
 });
-
 /*****/
 
 /* CHRONO */
@@ -387,11 +426,6 @@ const defilerTemps = () => {
     secondes = 0;
   }
 
-  if (minutes == 60) {
-    heures++;
-    minutes = 0;
-  }
-
   //   affichage
   if (secondes < 10) {
     secondes = "0" + secondes;
@@ -413,3 +447,4 @@ const reset = () => {
   secondes = 0;
   clearTimeout(timeout);
 };
+/*** CHRONO ****/

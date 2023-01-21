@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="shortcut icon" href="./public/img/cropped-aoc-favicon-2020-32x32.png" type="image/png">
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
     <title>Jeu de mémoire - Art of Creation</title>
 </head>
 
@@ -24,24 +25,28 @@
         </div>
     </section>
     <div class="container-fluid row d-flex align-items-center">
-        <div class="col-12 d-flex align-items-center justify-content-center" id="start">
+        <div class="col-12 d-flex flex-column align-items-center justify-content-center" id="start">
+            <label for="pseudo" class="fs-4 me-4 fw-bold">Entrez votre pseudo :</label>
+            <br>
             <div class="input-group justify-content-center align-items-center" id="input-group">
-                <label for="pseudo" class="fs-4 me-4 fw-bold">Entrez votre pseudo :</label>
                 <input type="text" aria-label="Pseudo" aria-describedby="validPseudo" class="fs-5 px-3 py-1"
                     id="pseudo">
                 <button class="btn" type="button" id="validPseudo">Valider</button>
             </div>
             <div id="difficulty" class="d-none flex-column align-items-center justify-content-center">
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select-difficulty">
-                    <option selected>Choisissez votre niveau de difficulté</option>
-                    <option value="normal">Normal</option>
-                    <option value="difficile">Difficile</option>
+                    <option selected class="fs-6">Choisissez votre niveau de difficulté</option>
+                    <option value="normal" class="fw-bold">Normal</option>
+                    <option value="difficile" class="fw-bold">Difficile</option>
                 </select>
                 <button class="btn" id="valid-difficulty">Valider</button>
             </div>
         </div>
         <div class="col-12 d-none opacity-100" id="partieJeu">
             <div class="jeu mx-auto d-flex align-items-center justify-content-center">
+                <div>
+                    <button class="btn " id="replay">Rejouer</button>
+                </div>
                 <div class="grille row d-flex gap-3 justify-content-center">
                     <div class="ligneCarte row row-cols-4 mt-2">
                         <div class="col">
@@ -84,8 +89,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div style="height: 10px; width: 100%;"></div> -->
 
                     <div class="ligneCarte row row-cols-4">
                         <div class="col">
@@ -134,20 +137,25 @@
         </div>
         <div class="d-none" id="partieScore">
             <div id="scores">
-                <table class="text-center">
+                    <h3 class="fs-1 fw-bold text-center">Tableau des scores</h3>
+                <table class="mx-auto text-center sortable">
                     <thead>
-                        <tr>
-                            <th colspan="2" class="fs-5">Tableau des scores</th>
-                        </tr>
-                        <tr>
-                            <th>Pseudo</th>
-                            <th>Temps</th>
+                        <tr class="fs-5">
+                            <th class="px-3">Pseudo</th>
+                            <th class="px-3 sorttable_numeric">Temps</th>
+                            <th class="px-3">Niveau</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="fs-5 text-center">
                         <tr>
-                            <td>aaa</td>
-                            <td>20s</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -160,5 +168,6 @@
 </body>
 <!-- Import JS -->
 <script src="./public/js/main.js"></script>
+
 
 </html>
