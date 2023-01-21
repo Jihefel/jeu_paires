@@ -7,14 +7,13 @@ let imagesFace = [
   "./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg",
 ];
 
-let attributesCard = [
-  "Headhunterz",
-  "Headhunterz",
-  "Wildstylez",
-  "Wildstylez",
-  "Noisecontrollers",
-  "Noisecontrollers",
-];
+const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3")
+const noisecontrollers = new Audio("../public/audio/noisecontrollers.mp3");
+noisecontrollers.volume = 0.3;
+const hover = new Audio("../public/audio/hover.mp3")
+hover.volume = 0.1
+
+
 
 // Déclarations getElement et query
 const faces = document.getElementsByClassName("face");
@@ -99,11 +98,26 @@ const displayNone = (element1, element2) => {
 
 let cartesTrouvees = [];
 let trouve = false;
+let bgCarteMatch
 
 const verifCartes = (carte1, carte2) => {
   if (carte1.nextElementSibling.style.backgroundImage === carte2.nextElementSibling.style.backgroundImage) {
     cartesTrouvees.push(carte1.parentNode, carte2.parentNode);
-    console.log(cartesTrouvees);
+    bgCarteMatch = carte1.nextElementSibling.style.backgroundImage.substring(5,carte1.nextElementSibling.style.backgroundImage.length-2)
+    
+    setTimeout(() => {
+      switch (true) {
+        case bgCarteMatch.toLowerCase().includes("headhunterz"):
+          headhunterz.play();
+          break;
+        case bgCarteMatch.toLowerCase().includes("noisecontrollers"):
+          noisecontrollers.play();
+          break;
+      
+        default:
+          break;
+      }
+    }, 1700);
 
     setTimeout(() => {
       cartesTrouvees.forEach(carte => {
@@ -190,6 +204,9 @@ Array.from(cartes).forEach((carte) => {
       retournement(e);
       demarrer()
     }
+  });
+  carte.addEventListener("mouseenter", () => {
+    hover.play()
   });
 });
 
