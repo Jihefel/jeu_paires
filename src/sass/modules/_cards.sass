@@ -38,6 +38,20 @@
                 .apparition
                     animation: apparition 5s ease-in-out 5s forwards
                     pointer-events: none
+    button
+        color: $yellowAOC
+        border: 1px solid $yellowAOC
+        box-shadow: 0 0 3px $yellowAOC
+        transition: 0.7s
+        padding: 14px 40px 14px 40px
+        background-color: #1f201abd
+        font-size: 2rem
+        animation: effetCartes 1s ease-in-out infinite alternate-reverse
+        &:hover
+            background-color: #1f201a85
+            color: white
+        &:active
+            box-shadow: 0 0 70px silver
 
 @keyframes apparition
     0%

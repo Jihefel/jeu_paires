@@ -21449,6 +21449,23 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   animation: apparition 5s ease-in-out 5s forwards;
   pointer-events: none;
 }
+.jeu button {
+  color: #f7bf40;
+  border: 1px solid #f7bf40;
+  box-shadow: 0 0 3px #f7bf40;
+  transition: 0.7s;
+  padding: 14px 40px 14px 40px;
+  background-color: rgba(31, 32, 26, 0.7411764706);
+  font-size: 2rem;
+  animation: effetCartes 1s ease-in-out infinite alternate-reverse;
+}
+.jeu button:hover {
+  background-color: rgba(31, 32, 26, 0.5215686275);
+  color: white;
+}
+.jeu button:active {
+  box-shadow: 0 0 70px silver;
+}
 
 @keyframes apparition {
   0% {
@@ -21532,18 +21549,26 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   border: 1px solid #f7bf40;
   transition: 0.7s;
   filter: drop-shadow(0 0 3px #f7bf40);
+  width: 215px;
 }
 #topWrapper .backTop #btnAfficher:hover {
   background-color: rgba(214, 195, 85, 0.1568627451);
   color: white;
   border: 1px solid white;
 }
-
-th {
-  cursor: pointer;
+#topWrapper .backTop #btnAfficher:active {
+  box-shadow: 0 0 70px silver;
 }
 
-tbody td {
+.offcanvas {
+  background: transparent;
+  width: 25% !important;
+  text-shadow: 0 0 3px #f7bf40;
+}
+.offcanvas th {
+  cursor: pointer;
+}
+.offcanvas tbody td {
   color: white;
 }
 

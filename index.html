@@ -20,7 +20,14 @@
                 <div>
                     <span id="chrono">00:00</span>
                 </div>
-                <button id="btnAfficher" class="btn">Afficher le tableau des scores</button>
+                <button id="btnAfficher" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Afficher le tableau des scores</button>
+                <div class="d-flex gap-4 align-items-center ms-3">
+                    <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-pause"></i>
+                    <i class="fa-solid fa-stop"></i>
+                    <i class="fa-solid fa-volume-down"></i>
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -34,7 +41,8 @@
                 <button class="btn" type="button" id="validPseudo">Valider</button>
             </div>
             <div id="difficulty" class="d-none flex-column align-items-center justify-content-center">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select-difficulty">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                    id="select-difficulty">
                     <option selected class="fs-6">Choisissez votre niveau de difficulté</option>
                     <option value="normal" class="fw-bold">Normal</option>
                     <option value="difficile" class="fw-bold">Difficile</option>
@@ -44,8 +52,8 @@
         </div>
         <div class="col-12 d-none opacity-100" id="partieJeu">
             <div class="jeu mx-auto d-flex align-items-center justify-content-center">
-                <div>
-                    <button class="btn " id="replay">Rejouer</button>
+                <div class="d-flex justify-content-center">
+                    <button class="btn d-none" id="replay">Nouvelle partie</button>
                 </div>
                 <div class="grille row d-flex gap-3 justify-content-center">
                     <div class="ligneCarte row row-cols-4 mt-2">
@@ -135,30 +143,37 @@
                 </div>
             </div>
         </div>
-        <div class="d-none" id="partieScore">
-            <div id="scores">
-                    <h3 class="fs-1 fw-bold text-center">Tableau des scores</h3>
-                <table class="mx-auto text-center sortable">
-                    <thead>
-                        <tr class="fs-5">
-                            <th class="px-3">Pseudo</th>
-                            <th class="px-3 sorttable_numeric">Temps</th>
-                            <th class="px-3">Niveau</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fs-5 text-center">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="partieScore">
+            <div class="offcanvas offcanvas-end d-flex align-items-center justify-content-center" tabindex="-1" id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1">
+                <div id="scores">
+                    <div class="offcanvas-header">
+                        <h3 class="fs-1 fw-bold text-center text-uppercase">Tableau des scores</h3>
+                    </div>
+                    <div class="offcanvas-body">
+                        <table class="mx-auto text-center sortable">
+                            <thead>
+                                <tr class="fs-5">
+                                    <th class="px-3">Pseudo</th>
+                                    <th class="px-3 sorttable_numeric">Temps</th>
+                                    <th class="px-3">Niveau</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fs-5 text-center">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,9 @@ let imagesFace = [
 const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3");
 headhunterz.volume = 0.25;
 
+const wildstylez = new Audio("../public/audio/wildstylez.mp3")
+wildstylez.volume = 0.12
+
 const noisecontrollers = new Audio("../public/audio/noisecontrollers.mp3");
 noisecontrollers.volume = 0.1;
 
@@ -42,6 +45,7 @@ const dernieresCartes = document.getElementsByClassName("derniere");
 const btnAfficherTableau = document.getElementById("btnAfficher");
 const partieScore = document.getElementById("partieScore");
 const partieJeu = document.getElementById("partieJeu");
+const replayBtn = document.getElementById("replay");
 let joueurs = document.querySelectorAll("tbody > tr");
 let pseudoTableau = [];
 joueurs.forEach((joueur) => {
@@ -55,8 +59,6 @@ let difficulteTableau = [];
 joueurs.forEach((joueur) => {
   difficulteTableau.push(joueur.lastElementChild);
 });
-
-console.log(difficulteTableau);
 
 let dernieresCol = [];
 for (let i = 0; i < lignesCartes.length; i++) {
@@ -85,7 +87,7 @@ const setPseudo = () => {
     inputPseudo.value === undefined ||
     inputPseudo.value.length < 4
   ) {
-    inputPseudo.placeholder = "Insérez un pseudo plus grand";
+    inputPseudo.placeholder = "Introduisez un pseudo plus grand";
     inputPseudo.value = "";
     return;
   } else {
@@ -211,22 +213,7 @@ const bgFace = () => {
 
 /*****/
 const afficherTab = () => {
-  if (
-    partieJeu.classList.contains("col-10") ||
-    start.classList.contains("col-10")
-  ) {
-    removeAddClass(partieJeu, "col-10", "col-12");
-    removeAddClass(start, "col-10", "col-12");
-  } else if (
-    partieJeu.classList.contains("col-12") ||
-    start.classList.contains("col-12")
-  ) {
-    removeAddClass(partieJeu, "col-12", "col-10");
-    removeAddClass(start, "col-12", "col-10");
-  }
-
-  partieScore.classList.toggle("d-none");
-  partieScore.classList.toggle("col-2");
+// Offcanvas Bootstrap 
 
   if (btnAfficherTableau.textContent.includes("Cacher")) {
     btnAfficherTableau.textContent = "Afficher le tableau des scores";
@@ -276,10 +263,15 @@ const verifCartes = (carte1, carte2) => {
       carte1.nextElementSibling.style.backgroundImage.length - 2
     );
     nombreCartesATrouver -= 2
+    // Fin de partie
     if (nombreCartesATrouver === 0) {
       setTimeout(() => {
         arreter()
         tempsTableau[ligneJoueur].textContent = chrono.textContent
+        setTimeout(() => {
+          removeAddClass(document.getElementsByClassName("grille")[0], "d-flex", "d-none")
+          toggleClass(replayBtn, "d-none")
+        }, 2000);
       }, 3000);
     }
     // Audio quand match
@@ -292,7 +284,7 @@ const verifCartes = (carte1, carte2) => {
           noisecontrollers.play();
           break;
         case bgCarteMatch.toLowerCase().includes("wildstylez"):
-          // wildstylez.play();
+          wildstylez.play();
           break;
         case bgCarteMatch.toLowerCase().includes("project"):
           projectOne.play();
@@ -390,6 +382,14 @@ Array.from(cartes).forEach((carte) => {
   });
 });
 /*****/
+
+const nouvellePartie = () => {
+  toggleClass(replayBtn, "d-none")
+}
+
+
+
+
 
 /* CHRONO */
 let minutes = 0;
