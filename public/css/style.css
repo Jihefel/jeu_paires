@@ -21349,10 +21349,13 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   height: 100%;
 }
 
-#start .input-group {
+#start #getPseudo {
+  width: 100%;
+}
+#start #getPseudo .input-group {
   filter: drop-shadow(0 0 10px black);
 }
-#start .input-group input {
+#start #getPseudo .input-group input {
   text-shadow: 0 0 3px black;
   background-color: rgba(214, 195, 85, 0.3490196078);
   outline: none;
@@ -21362,7 +21365,7 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   border: 1px solid #f7bf40;
   width: 20%;
 }
-#start .input-group input::placeholder {
+#start #getPseudo .input-group input::placeholder {
   color: #f7bf40;
   font-size: 1rem;
 }
@@ -21387,8 +21390,6 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   border: 1px solid #f7bf40;
   box-shadow: 0 0 10px #f7bf40;
   width: 120%;
-}
-#start #difficulty select:focus {
   box-shadow: 0 0 25px #f7bf40;
 }
 #start #difficulty select option {
@@ -21448,6 +21449,9 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
 .jeu .grille .ligneCarte .col .apparition {
   animation: apparition 5s ease-in-out 5s forwards;
   pointer-events: none;
+}
+.jeu .grille .ligneCarte .col .effetCartes {
+  animation: effetCartes 1s ease-in-out infinite alternate-reverse;
 }
 .jeu button {
   color: #f7bf40;
@@ -21564,6 +21568,8 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   background: transparent;
   width: 25% !important;
   text-shadow: 0 0 3px #f7bf40;
+  animation: effetCartes 1s ease-in-out infinite alternate-reverse;
+  border: 0px;
 }
 .offcanvas th {
   cursor: pointer;
