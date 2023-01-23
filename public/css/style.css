@@ -21349,6 +21349,56 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   height: 100%;
 }
 
+#topWrapper {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+}
+#topWrapper .backTop {
+  padding: 10px;
+  height: 60px;
+  width: 50%;
+  background-color: rgba(214, 195, 85, 0.1568627451);
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  margin: auto;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 5px #f7bf40;
+  color: white;
+}
+#topWrapper .backTop #btnAfficher {
+  color: #f7bf40;
+  border: 1px solid #f7bf40;
+  transition: 0.7s;
+  filter: drop-shadow(0 0 3px #f7bf40);
+  width: 215px;
+}
+#topWrapper .backTop #btnAfficher:hover {
+  background-color: rgba(214, 195, 85, 0.1568627451);
+  color: white;
+  border: 1px solid white;
+}
+#topWrapper .backTop #btnAfficher:active {
+  box-shadow: 0 0 70px silver;
+}
+#topWrapper .backTop .titre {
+  left: 2%;
+  width: 30%;
+  text-align: center;
+}
+#topWrapper .backTop .musicbtn {
+  position: absolute;
+  left: 69.5%;
+}
+#topWrapper .backTop .musicbtn i {
+  cursor: pointer;
+  filter: drop-shadow(0 0 3px #f7bf40);
+}
+#topWrapper .backTop .musicbtn i:active {
+  color: #f7bf40;
+  filter: drop-shadow(0 0 5px red);
+}
+
 #start #getPseudo {
   width: 100%;
 }
@@ -21390,6 +21440,8 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   border: 1px solid #f7bf40;
   box-shadow: 0 0 10px #f7bf40;
   width: 120%;
+}
+#start #difficulty select:focus {
   box-shadow: 0 0 25px #f7bf40;
 }
 #start #difficulty select option {
@@ -21531,39 +21583,6 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
     display: none;
   }
 }
-#topWrapper {
-  width: 100%;
-  height: 30px;
-  position: absolute;
-}
-#topWrapper .backTop {
-  padding: 10px;
-  height: 60px;
-  width: 50%;
-  background-color: rgba(214, 195, 85, 0.1568627451);
-  border-bottom-left-radius: 150px;
-  border-bottom-right-radius: 150px;
-  margin: auto;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 5px #f7bf40;
-  color: white;
-}
-#topWrapper .backTop #btnAfficher {
-  color: #f7bf40;
-  border: 1px solid #f7bf40;
-  transition: 0.7s;
-  filter: drop-shadow(0 0 3px #f7bf40);
-  width: 215px;
-}
-#topWrapper .backTop #btnAfficher:hover {
-  background-color: rgba(214, 195, 85, 0.1568627451);
-  color: white;
-  border: 1px solid white;
-}
-#topWrapper .backTop #btnAfficher:active {
-  box-shadow: 0 0 70px silver;
-}
-
 .offcanvas {
   background: transparent;
   width: 25% !important;

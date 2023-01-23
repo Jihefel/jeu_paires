@@ -23,12 +23,17 @@
                 <button id="btnAfficher" class="btn" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Afficher le tableau des
                     scores</button>
-                <div class="d-flex gap-4 align-items-center ms-3">
-                    <i class="fa-solid fa-play"></i>
-                    <i class="fa-solid fa-pause"></i>
-                    <i class="fa-solid fa-stop"></i>
-                    <i class="fa-solid fa-volume-down"></i>
-                    <i class="fa-solid fa-volume-high"></i>
+                    <div class="titre position-absolute fs-6">
+                        <span class="me-3"><i class="fa-solid fa-music fa-2xs"></i></span><span id="titre" >
+                </div>
+                <div class="musicbtn d-flex gap-3 align-items-center ms-3">
+                    <i class="fa-solid fa-play fa-sm"></i>
+                    <i class="fa-solid fa-pause fa-sm"></i>
+                    <i class="fa-solid fa-stop fa-sm"></i>
+                    <i class="fa-solid fa-backward-step fa-sm"></i>
+                    <i class="fa-solid fa-forward-step fa-sm"></i>
+                    <i class="fa-solid fa-volume-down fa-sm"></i>
+                    <i class="fa-solid fa-volume-high fa-sm"></i>
                 </div>
             </div>
         </div>
@@ -248,7 +253,7 @@
     <script src='./node_modules/bootstrap/dist/js/bootstrap.bundle.js'></script>
 </body>
 <!-- Import JS -->
-<script src="./public/js/main.js"></script>
+<script src="./public/js/main.js" type="module"></script>
 
 
 </html>
