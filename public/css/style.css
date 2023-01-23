@@ -21450,6 +21450,9 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   color: #1f201a;
   box-shadow: 0 0 30px #f7bf40;
 }
+#start #difficulty button {
+  background-color: rgba(131, 91, 36, 0.768627451);
+}
 
 .jeu {
   width: 60%;
