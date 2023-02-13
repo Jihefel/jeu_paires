@@ -247,6 +247,11 @@ export const init = () => {
   };
 
   validPseudo.addEventListener("click", setPseudo);
+  inputPseudo.addEventListener("keydown", (e) => {
+    if (e.keyCode === 13) {
+      setPseudo();
+    }
+  });
   validDifficulty.addEventListener("click", setDifficulty);
 
   /*****/
