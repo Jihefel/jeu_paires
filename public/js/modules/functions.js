@@ -47,9 +47,6 @@ let musics = []
 instancesMusiques.forEach(zik => {
     musics.push(new Audio(zik.lien))
 });
-console.log(musics[0]);
-
-console.log(musics);
 
 musics.forEach((musique) => {
   musique.volume = 0.1;
@@ -537,6 +534,7 @@ const reset = () => {
 /*** CHRONO ****/
 
 export const nouvellePartie = () => {
+  container.style.background = "linear-gradient(180deg, #131313cc, $bgAOC 100%)"
   inputPseudo.value = "";
   // Bouton disparaît
   toggleClass(replayBtn, "d-none");

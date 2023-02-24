@@ -21332,11 +21332,12 @@ body {
 }
 body video {
   position: fixed;
-  right: 0;
-  bottom: 0;
   min-width: 100%;
   min-height: 100%;
   z-index: -1;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
 }
 body .container-fluid, body .container-sm, body .container-md, body .container-lg, body .container-xl, body .container-xxl {
   width: 100%;
