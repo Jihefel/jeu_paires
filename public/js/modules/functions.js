@@ -23,21 +23,21 @@ export let imagesDifficiles = [
 ];
 
 // Déclaration audio
-export const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3");
+export const headhunterz = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/headhunterz_notif.mp3");
 headhunterz.volume = 0.5;
 
-export const wildstylez = new Audio("../public/audio/wildstylez.mp3");
+export const wildstylez = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/wildstylez.mp3");
 wildstylez.volume = 0.25;
 
 export const noisecontrollers = new Audio(
-  "../public/audio/noisecontrollers.mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/noisecontrollers.mp3"
 );
 noisecontrollers.volume = 0.25;
 
-export const projectOne = new Audio("../public/audio/projectOne.mp3");
+export const projectOne = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/projectOne.mp3");
 projectOne.volume = 0.5;
 
-export const hover = new Audio("../public/audio/hover.mp3");
+export const hover = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/hover.mp3");
 hover.volume = 0.02;
 
 let instancesMusiques = [musiques.takinItBack, musiques.liveAndLetDie, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];

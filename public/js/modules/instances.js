@@ -3,35 +3,35 @@ import { Musique } from "./classes.js";
 export const takinItBack = new Musique(
   "Headhunterz",
   "Takin' It Back",
-  "../../public/audio/Headhunterz - Takin It Back.mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Headhunterz%20-%20Takin%20It%20Back.mp3"
   );
   
 export const liveAndLetDie = new Musique(
   "Bass Modulators",
   "Live and Let Die",
-  "../../public/audio/Bass Modulators - Live And Let Die.mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Bass%20Modulators%20-%20Live%20And%20Let%20Die.mp3"
 );
 
 export const dreams200 = new Musique(
   "Noisecontrollers & Wildstylez",
   "200 Dreams",
-  "../../public/audio/Noisecontrollers & Wildstylez - 200 Dreams (Official Videoclip).mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Noisecontrollers%20&%20Wildstylez%20-%20200%20Dreams%20(Official%20Videoclip).mp3"
 );
 
 export const intoTheWild = new Musique(
   "Wildstylez",
   "Into the Wild",
-  "../../public/audio/Wildstylez - Into The Wild (Feat. KiFi) (Official Videoclip).mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Wildstylez%20-%20Into%20The%20Wild%20(Feat.%20KiFi)%20(Official%20Videoclip).mp3"
 );
 
 export const journey = new Musique(
   "Project One",
   "Journey of the Mind",
-  "../../public/audio/Project One - Journey Of The Mind.mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Project%20One%20-%20Journey%20Of%20The%20Mind.mp3"
 );
 
 export const oxygen = new Musique(
   "Headhunterz",
   "Oxygen",
-  "../../public/audio/Headhunterz - Oxygen (Official Videoclip).mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/Headhunterz%20-%20Oxygen%20(Official%20Videoclip).mp3"
 );
