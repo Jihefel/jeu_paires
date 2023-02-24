@@ -112,7 +112,7 @@ let ligneJoueur = 0;
 let pseudoTableau = [];
 let tempsTableau = [];
 let difficulteTableau = [];
-let joueurs = document.querySelectorAll("tbody > tr");
+let joueurs;
 let cartesTrouvees = [];
 let trouve = false;
 let carteCliquee = null;
@@ -129,17 +129,26 @@ selectDifficulty.addEventListener("change", (e) => {
   difficulte = e.target.value;
 });
 
-joueurs.forEach((joueur) => {
-  pseudoTableau.push(joueur.firstElementChild);
-});
-joueurs.forEach((joueur) => {
-  tempsTableau.push(joueur.firstElementChild.nextElementSibling);
-});
-joueurs.forEach((joueur) => {
-  difficulteTableau.push(joueur.lastElementChild);
-});
 
 export const init = () => {
+  const tbody = document.querySelector("tbody");
+  const tr = document.createElement("tr");
+  const td1 = document.createElement("td");
+  const td2 = document.createElement("td");
+  const td3 = document.createElement("td");
+  
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  
+  tbody.appendChild(tr);
+  
+  joueurs = document.querySelectorAll("tbody > tr");
+  
+  pseudoTableau.push(joueurs[ligneJoueur].firstElementChild);
+  tempsTableau.push(joueurs[ligneJoueur].children[1]);
+  difficulteTableau.push(joueurs[ligneJoueur].lastElementChild);
+
   const setPseudo = () => {
     if (inputPseudo.value === "") {
       return;
