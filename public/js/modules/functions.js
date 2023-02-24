@@ -23,21 +23,21 @@ export let imagesDifficiles = [
 ];
 
 // Déclaration audio
-export const headhunterz = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/headhunterz_notif.mp3");
+export const headhunterz = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/headhunterz_notif.mp3");
 headhunterz.volume = 0.5;
 
-export const wildstylez = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/wildstylez.mp3");
+export const wildstylez = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/wildstylez.mp3");
 wildstylez.volume = 0.25;
 
 export const noisecontrollers = new Audio(
-  "https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/noisecontrollers.mp3"
+  "https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/noisecontrollers.mp3"
 );
 noisecontrollers.volume = 0.25;
 
-export const projectOne = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/projectOne.mp3");
+export const projectOne = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/projectOne.mp3");
 projectOne.volume = 0.5;
 
-export const hover = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires_Flament_Jeremy/gh-pages/public/audio/hover.mp3");
+export const hover = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/hover.mp3");
 hover.volume = 0.02;
 
 let instancesMusiques = [musiques.takinItBack, musiques.liveAndLetDie, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];
@@ -618,26 +618,22 @@ const backMusic = () => {
 
 
 const nextMusic = () => {
-  if (isPlaying(musics[indexMusic])) {
-    if (indexMusic === musics.length - 1) {
-      musics[indexMusic].load();
-      indexMusic = 0;
-      musics[indexMusic].play();
-      titre.textContent =
-        instancesMusiques[indexMusic].artiste +
-        " - " +
-        instancesMusiques[indexMusic].titre;
-    } else {
-      musics[indexMusic].load();
-      indexMusic++;
-      musics[indexMusic].play();
-      titre.textContent =
-        instancesMusiques[indexMusic].artiste +
-        " - " +
-        instancesMusiques[indexMusic].titre;
-    }
+  if (indexMusic === musics.length - 1) {
+    indexMusic = 0;
+  } else {
+    indexMusic++;
   }
+  musics.forEach((music) => {
+    music.pause();
+    music.currentTime = 0;
+  });
+  musics[indexMusic].play();
+  titre.textContent =
+    instancesMusiques[indexMusic].artiste +
+    " - " +
+    instancesMusiques[indexMusic].titre;
 };
+
 
 const volumeDown = () => {
     if (isPlaying(musics[indexMusic])) {
@@ -662,6 +658,11 @@ const volumeUp = () => {
         }
     }
 };
+
+musics[indexMusic].addEventListener('ended', () => {
+  nextMusic();
+});
+
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
