@@ -1,15 +1,15 @@
 import { Musique } from "./classes.js";
 
-export const liveAndLetDie = new Musique(
-  "Bass Modulators",
-  "Live and Let Die",
-  "../../public/audio/Bass Modulators - Live And Let Die.mp3"
-);
-
 export const takinItBack = new Musique(
   "Headhunterz",
   "Takin' It Back",
   "../../public/audio/Headhunterz - Takin It Back.mp3"
+  );
+  
+export const liveAndLetDie = new Musique(
+  "Bass Modulators",
+  "Live and Let Die",
+  "../../public/audio/Bass Modulators - Live And Let Die.mp3"
 );
 
 export const dreams200 = new Musique(

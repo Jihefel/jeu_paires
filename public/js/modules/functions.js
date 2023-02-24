@@ -40,7 +40,7 @@ projectOne.volume = 0.5;
 export const hover = new Audio("../public/audio/hover.mp3");
 hover.volume = 0.02;
 
-let instancesMusiques = [musiques.liveAndLetDie, musiques.takinItBack, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];
+let instancesMusiques = [musiques.takinItBack, musiques.liveAndLetDie, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];
 
 let musics = []
 
