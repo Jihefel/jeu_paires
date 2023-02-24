@@ -618,26 +618,26 @@ const backMusic = () => {
 
 
 const nextMusic = () => {
-  if (isPlaying(musics[indexMusic])) {
-    if (indexMusic === musics.length - 1) {
-      musics[indexMusic].load();
-      indexMusic = 0;
-      musics[indexMusic].play();
-      titre.textContent =
-        instancesMusiques[indexMusic].artiste +
-        " - " +
-        instancesMusiques[indexMusic].titre;
-    } else {
-      musics[indexMusic].load();
-      indexMusic++;
-      musics[indexMusic].play();
-      titre.textContent =
-        instancesMusiques[indexMusic].artiste +
-        " - " +
-        instancesMusiques[indexMusic].titre;
-    }
+  if (indexMusic === musics.length - 1) {
+    indexMusic = 0;
+  } else {
+    indexMusic++;
   }
+  musics.forEach((music) => {
+    music.pause();
+    music.currentTime = 0;
+  });
+  musics[indexMusic].play();
+  titre.textContent =
+    instancesMusiques[indexMusic].artiste +
+    " - " +
+    instancesMusiques[indexMusic].titre;
 };
+
+musics[indexMusic].addEventListener('ended', () => {
+  nextMusic();
+});
+
 
 const volumeDown = () => {
     if (isPlaying(musics[indexMusic])) {
