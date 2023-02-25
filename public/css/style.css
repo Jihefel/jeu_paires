@@ -21410,6 +21410,9 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   background-color: transparent;
   border: none;
 }
+#topWrapper .backTop .dropdown-toggle i {
+  pointer-events: none;
+}
 
 @media screen and (max-width: 1440px) {
   .backTop {
