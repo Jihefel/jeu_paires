@@ -53,6 +53,7 @@ let instancesMusiques = [
   musiques.leapOfFaith,
   musiques.liveAndLetDie,
   musiques.intoTheWild,
+  musiques.holdMeClose,
   musiques.oxygen,
   musiques.dreams200,
   musiques.journey,

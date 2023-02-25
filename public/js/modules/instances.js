@@ -62,3 +62,10 @@ export const leapOfFaith = new Musique(
   "Leap of Faith",
   "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Leap%20Of%20Faith.mp3?raw=true"
 );
+
+export const holdMeClose = new Musique(
+  "../../public/img/arize-logo.png",
+  " ",
+  "Hold Me Close",
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Hold%20Me%20Close.mp3?raw=true"
+);
