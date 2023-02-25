@@ -1,3 +1,3 @@
-import { init, nouvellePartie } from "./modules/functions.js";
+import { init } from "./modules/functions.js";
 
 init()
