@@ -23,21 +23,21 @@ export let imagesDifficiles = [
 ];
 
 // Déclaration audio
-export const headhunterz = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/headhunterz_notif.mp3");
+export const headhunterz = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/headhunterz_notif.mp3?raw=true");
 headhunterz.volume = 0.5;
 
-export const wildstylez = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/wildstylez.mp3");
+export const wildstylez = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/wildstylez.mp3?raw=true");
 wildstylez.volume = 0.25;
 
 export const noisecontrollers = new Audio(
-  "https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/noisecontrollers.mp3"
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/noisecontrollers.mp3?raw=true"
 );
 noisecontrollers.volume = 0.25;
 
-export const projectOne = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/projectOne.mp3");
+export const projectOne = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/projectOne.mp3?raw=true");
 projectOne.volume = 0.5;
 
-export const hover = new Audio("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/audio/hover.mp3");
+export const hover = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/hover.mp3?raw=true");
 hover.volume = 0.02;
 
 let instancesMusiques = [musiques.takinItBack, musiques.liveAndLetDie, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];
@@ -534,7 +534,7 @@ const reset = () => {
 /*** CHRONO ****/
 
 export const nouvellePartie = () => {
-  container.style.background = "linear-gradient(180deg, #131313cc, $bgAOC 100%)"
+  container.style.background = "linear-gradient(180deg, #131313cc, rgba(214, 195, 85, 0.16) 100%)"
   inputPseudo.value = "";
   // Bouton disparaît
   toggleClass(replayBtn, "d-none");
@@ -666,10 +666,7 @@ const volumeUp = () => {
     }
 };
 
-musics[indexMusic].addEventListener('ended', () => {
-  nextMusic();
-});
-
+addEndedEventListener();
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
