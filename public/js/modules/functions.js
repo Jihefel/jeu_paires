@@ -1,4 +1,4 @@
-import * as musiques from './instances.js';
+import * as musiques from "./instances.js";
 
 export let imagesFace = [];
 
@@ -23,36 +23,49 @@ export let imagesDifficiles = [
 ];
 
 // Déclaration audio
-export const headhunterz = new Audio("../public/audio/headhunterz_notif.mp3");
+export const headhunterz = new Audio(
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/headhunterz_notif.mp3?raw=true"
+);
 headhunterz.volume = 0.5;
 
-export const wildstylez = new Audio("../public/audio/wildstylez.mp3");
+export const wildstylez = new Audio(
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/wildstylez.mp3?raw=true"
+);
 wildstylez.volume = 0.25;
 
 export const noisecontrollers = new Audio(
-  "../public/audio/noisecontrollers.mp3"
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/noisecontrollers.mp3?raw=true"
 );
 noisecontrollers.volume = 0.25;
 
-export const projectOne = new Audio("../public/audio/projectOne.mp3");
+export const projectOne = new Audio(
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/projectOne.mp3?raw=true"
+);
 projectOne.volume = 0.5;
 
-export const hover = new Audio("../public/audio/hover.mp3");
+export const hover = new Audio(
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/hover.mp3?raw=true"
+);
 hover.volume = 0.02;
 
-let instancesMusiques = [musiques.takinItBack, musiques.liveAndLetDie, musiques.dreams200, musiques.intoTheWild, musiques.journey, musiques.oxygen];
+let instancesMusiques = [
+  musiques.intoTheWild,
+  musiques.oxygen,
+  musiques.liveAndLetDie,
+  musiques.takinItBack,
+  musiques.dreams200,
+  musiques.journey,
+];
 
-let musics = []
+let musics = [];
 
-instancesMusiques.forEach(zik => {
-    musics.push(new Audio(zik.lien))
+instancesMusiques.forEach((zik) => {
+  musics.push(new Audio(zik.lien));
 });
-
 
 musics.forEach((musique) => {
   musique.volume = 0.1;
 });
-
 
 // Déclarations getElement et query
 let videoBg = document.getElementById("videoBg");
@@ -127,22 +140,21 @@ selectDifficulty.addEventListener("change", (e) => {
   difficulte = e.target.value;
 });
 
-
 export const init = () => {
   const tbody = document.querySelector("tbody");
   const tr = document.createElement("tr");
   const td1 = document.createElement("td");
   const td2 = document.createElement("td");
   const td3 = document.createElement("td");
-  
+
   tr.appendChild(td1);
   tr.appendChild(td2);
   tr.appendChild(td3);
-  
+
   tbody.appendChild(tr);
-  
+
   joueurs = document.querySelectorAll("tbody > tr");
-  
+
   pseudoTableau.push(joueurs[ligneJoueur].firstElementChild);
   tempsTableau.push(joueurs[ligneJoueur].children[1]);
   difficulteTableau.push(joueurs[ligneJoueur].lastElementChild);
@@ -535,6 +547,8 @@ const reset = () => {
 /*** CHRONO ****/
 
 export const nouvellePartie = () => {
+  container.style.background =
+    "linear-gradient(180deg, #131313cc, rgba(214, 195, 85, 0.16) 100%)";
   inputPseudo.value = "";
   // Bouton disparaît
   toggleClass(replayBtn, "d-none");
@@ -641,10 +655,6 @@ const nextMusic = () => {
     instancesMusiques[indexMusic].titre;
 };
 
-musics[indexMusic].addEventListener('ended', () => {
-  nextMusic();
-});
-
 
 const volumeDown = () => {
     if (isPlaying(musics[indexMusic])) {
@@ -669,6 +679,12 @@ const volumeUp = () => {
         }
     }
 };
+
+musics.forEach(music => {
+  music.addEventListener("ended", () => {
+    nextMusic();
+  });
+})
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
