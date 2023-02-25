@@ -49,12 +49,15 @@ export const hover = new Audio(
 hover.volume = 0.02;
 
 let instancesMusiques = [
+  musiques.untamable,
+  musiques.leapOfFaith,
+  musiques.liveAndLetDie,
   musiques.intoTheWild,
   musiques.oxygen,
-  musiques.liveAndLetDie,
-  musiques.takinItBack,
   musiques.dreams200,
   musiques.journey,
+  musiques.takinItBack,
+  musiques.beforeIWake
 ];
 
 let musics = [];
@@ -744,12 +747,15 @@ instancesMusiques.forEach((musique) => {
   img2.src = musique.artiste2;
   img1.style.width = "fit-content;";
   img1.style.height = "30px";
+  img1.className = "me-1"
+
   img2.style.width = "fit-content;";
   img2.style.height = "30px";
   img2.className = "me-2";
   span1.textContent = " - ";
-  span1.className = "me-2";
+  span1.className = "me-3";
   span2.textContent = musique.titre.toUpperCase();
+  span2.className = "music-title"
 
   a.addEventListener("click", () => {
     musics[indexMusic].load();

@@ -40,4 +40,25 @@ export const oxygen = new Musique(
   " ",
   "Oxygen",
   "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Headhunterz%20-%20Oxygen%20(Official%20Videoclip).mp3?raw=true"
+)
+
+export const untamable = new Musique(
+  "../../public/img/wildstylez-logo-white.png",
+  "../../public/img/sound-rush-logo.png",
+  "Untamable",
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Untamable%20(feat.%20Ruby%20Prophet).mp3?raw=true"
+);
+
+export const beforeIWake = new Musique(
+  "../../public/img/hhz-logo_white.png",
+  "../../public/img/vertile-logo.png",
+  "Before I Wake",
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Headhunterz%20&%20Vertile%20-%20Before%20I%20Wake%20(Official%20Videoclip).mp3?raw=true"
+);
+
+export const leapOfFaith = new Musique(
+  "../../public/img/hhz-logo_white.png",
+  " ",
+  "Leap of Faith",
+  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/Leap%20Of%20Faith.mp3?raw=true"
 );

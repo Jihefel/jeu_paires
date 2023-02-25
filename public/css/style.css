@@ -21411,7 +21411,7 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   border: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1440px) {
   .backTop {
     width: 100% !important;
   }
