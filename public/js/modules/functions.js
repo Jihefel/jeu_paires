@@ -590,6 +590,9 @@ export const nouvellePartie = () => {
 
 replayBtn.addEventListener("click", nouvellePartie);
 
+const artist1Logo = document.getElementById("artist1");
+const artist2Logo = document.getElementById("artist2");
+
 function isPlaying(audioElement) {
   return !audioElement.paused;
 }
@@ -597,10 +600,9 @@ function isPlaying(audioElement) {
 const playMusic = () => {
   if (!isPlaying(musics[indexMusic])) {
     musics[indexMusic].play();
-    titre.textContent =
-      instancesMusiques[indexMusic].artiste +
-      " - " +
-      instancesMusiques[indexMusic].titre;
+    artist1Logo.src = instancesMusiques[indexMusic].artiste1;
+    artist2Logo.src = instancesMusiques[indexMusic].artiste2;
+    titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
   }
 };
 
@@ -612,31 +614,27 @@ const pauseMusic = () => {
 
 const stopMusic = () => {
   musics[indexMusic].load();
+  artist1Logo.src = "";
+  artist2Logo.src = "";
   titre.textContent = "";
 };
 
 const backMusic = () => {
-    if (isPlaying(musics[indexMusic])) {
-        if (indexMusic === 0) {
-          musics[indexMusic].load();
-          indexMusic = musics.length - 1;
-          musics[indexMusic].play();
-          titre.textContent =
-            instancesMusiques[indexMusic].artiste +
-            " - " +
-            instancesMusiques[indexMusic].titre;
-        } else {
-          musics[indexMusic].load();
-          indexMusic--;
-          musics[indexMusic].play();
-          titre.textContent =
-            instancesMusiques[indexMusic].artiste +
-            " - " +
-            instancesMusiques[indexMusic].titre;
-        }
-      }
+  if (isPlaying(musics[indexMusic])) {
+    if (indexMusic === 0) {
+      musics[indexMusic].load();
+      indexMusic = musics.length - 1;
+      musics[indexMusic].play();
+    } else {
+      musics[indexMusic].load();
+      indexMusic--;
+      musics[indexMusic].play();
+    }
+    artist1Logo.src = instancesMusiques[indexMusic].artiste1;
+    artist2Logo.src = instancesMusiques[indexMusic].artiste2;
+    titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
+  }
 };
-
 
 const nextMusic = () => {
   if (indexMusic === musics.length - 1) {
@@ -649,42 +647,40 @@ const nextMusic = () => {
     music.currentTime = 0;
   });
   musics[indexMusic].play();
-  titre.textContent =
-    instancesMusiques[indexMusic].artiste +
-    " - " +
-    instancesMusiques[indexMusic].titre;
+  artist1Logo.src = instancesMusiques[indexMusic].artiste1;
+  artist2Logo.src = instancesMusiques[indexMusic].artiste2;
+  titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
 };
 
-
 const volumeDown = () => {
-    if (isPlaying(musics[indexMusic])) {
-        musics[indexMusic].volume -= 0.1
-        for (let i = 0; i < musics.length; i++) {
-            musics[i].volume = musics[indexMusic].volume
-        }
-        if (musics[indexMusic].volume <= 0) {
-            return
-        }
+  if (isPlaying(musics[indexMusic])) {
+    musics[indexMusic].volume -= 0.1;
+    for (let i = 0; i < musics.length; i++) {
+      musics[i].volume = musics[indexMusic].volume;
     }
+    if (musics[indexMusic].volume <= 0) {
+      return;
+    }
+  }
 };
 
 const volumeUp = () => {
-    if (isPlaying(musics[indexMusic])) {
-        musics[indexMusic].volume += 0.1
-        for (let i = 0; i < musics.length; i++) {
-            musics[i].volume = musics[indexMusic].volume
-        }
-        if (musics[indexMusic].volume >= 1) {
-            return
-        }
+  if (isPlaying(musics[indexMusic])) {
+    musics[indexMusic].volume += 0.1;
+    for (let i = 0; i < musics.length; i++) {
+      musics[i].volume = musics[indexMusic].volume;
     }
+    if (musics[indexMusic].volume >= 1) {
+      return;
+    }
+  }
 };
 
-musics.forEach(music => {
+musics.forEach((music) => {
   music.addEventListener("ended", () => {
     nextMusic();
   });
-})
+});
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);

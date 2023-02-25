@@ -21384,12 +21384,13 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
 }
 #topWrapper .backTop .titre {
   left: 2%;
-  width: 30%;
+  width: 35%;
   text-align: center;
+  letter-spacing: 2px;
 }
-#topWrapper .backTop .musicbtn {
-  position: absolute;
-  left: 69.5%;
+#topWrapper .backTop #titre {
+  font-size: 14px;
+  margin-top: 3px;
 }
 #topWrapper .backTop .musicbtn i {
   cursor: pointer;
