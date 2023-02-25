@@ -21352,13 +21352,11 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
 
 #topWrapper {
   width: 100%;
-  height: 30px;
   position: absolute;
 }
 #topWrapper .backTop {
   padding: 10px;
-  height: 60px;
-  width: 50%;
+  width: 55%;
   background-color: rgba(214, 195, 85, 0.1568627451);
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px;
@@ -21367,30 +21365,33 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   box-shadow: 0 0 5px #f7bf40;
   color: white;
 }
-#topWrapper .backTop #btnAfficher {
+#topWrapper .backTop .btnAfficher {
   color: #f7bf40;
   border: 1px solid #f7bf40;
   transition: 0.7s;
   filter: drop-shadow(0 0 3px #f7bf40);
+  font-size: 67%;
   width: 215px;
 }
-#topWrapper .backTop #btnAfficher:hover {
+#topWrapper .backTop .btnAfficher:hover {
   background-color: rgba(214, 195, 85, 0.1568627451);
   color: white;
   border: 1px solid white;
 }
-#topWrapper .backTop #btnAfficher:active {
+#topWrapper .backTop .btnAfficher:active {
   box-shadow: 0 0 70px silver;
 }
 #topWrapper .backTop .titre {
   left: 2%;
-  width: 35%;
+  width: 40%;
   text-align: center;
   letter-spacing: 2px;
 }
+#topWrapper .backTop .titre .titre-content {
+  height: 30px;
+}
 #topWrapper .backTop #titre {
   font-size: 14px;
-  margin-top: 3px;
 }
 #topWrapper .backTop .musicbtn i {
   cursor: pointer;
@@ -21400,7 +21401,22 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   color: #f7bf40;
   filter: drop-shadow(0 0 5px red);
 }
+#topWrapper .backTop .musics-list {
+  background: linear-gradient(180deg, rgba(19, 19, 19, 0.8), rgba(214, 195, 85, 0.1568627451) 100%);
+  box-shadow: 0 0 5px #f7bf40;
+  inset: 22px auto auto 0px !important;
+}
+#topWrapper .backTop .dropdown-toggle {
+  padding: 3px 10px;
+  background-color: transparent;
+  border: none;
+}
 
+@media screen and (max-width: 768px) {
+  .backTop {
+    width: 100% !important;
+  }
+}
 #start #getPseudo {
   width: 100%;
 }
@@ -21593,13 +21609,18 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   width: 25% !important;
   text-shadow: 0 0 3px #f7bf40;
   animation: effetCartes 1s ease-in-out infinite alternate-reverse;
-  border: 0px;
+  border: none !important;
 }
 .offcanvas th {
   cursor: pointer;
 }
 .offcanvas tbody td {
   color: white;
+}
+
+.modal-content {
+  background-color: transparent;
+  backdrop-filter: blur(5px);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -17,16 +17,45 @@
     <section id="topWrapper">
         <div class="backTop">
             <div id="top" class="d-flex justify-content-around align-items-center">
-                <div class="titre d-flex align-items-center fs-6 ms-5">
-                    <span class="me-3 d-flex justify-content-center align-items-center w-100"><i class="fa-solid fa-music fa-2xs me-3"></i><img id="artist1" src="" alt="" style="max-height: 30px; width: fit-content;"><img id="artist2" src="" alt="" style="max-height: 30px; width: fit-content;" class="me-2"><span id="titre"></span></span>
+                <div class="titre d-flex align-items-center fs-6 ">
+                    <span class="titre-content d-flex justify-content-center align-items-center w-100">
+                        <div class="dropdown-center">
+                            <button class="dropdown-toggle text-white d-flex align-items-center me-1" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-music fa-2xs"></i>
+                            </button>
+
+                            <ul class="musics-list dropdown-menu dropdown-menu-dark">
+
+                            </ul>
+                        </div>
+                        <img id="artist1" src=" " style="height: -webkit-fill-available; width: fit-content;">
+                        <img id="artist2" src=" " style="height: -webkit-fill-available; width: fit-content;"
+                            class="me-2">
+                        <span id="separationMusic" class="me-2"></span><span id="titre"></span>
+                    </span>
                 </div>
-                <div class="me-5">
-                    <span id="chrono">00:00</span>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="me-5">
+                        <span id="chrono">00:00</span>
+                    </div>
+                    <button class="btn d-none d-lg-block btnAfficher" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Afficher le tableau des
+                        scores</button>
                 </div>
-                <button id="btnAfficher" class="btn me-5" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Afficher le tableau des
-                    scores</button>
-                <div class="musicbtn d-flex gap-3 align-items-center mx-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn d-lg-none btnAfficher" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop" style="color: #f7bf40; border: 1px solid #f7bf40;
+                    transition: 0.7s;
+                    filter: drop-shadow(0 0 3px #f7bf40);
+                    font-size: 67%;
+                    width: 215px;">
+                    Afficher le tableau des
+                        scores
+                </button>
+
+
+                <div class="musicbtn d-flex gap-3 align-items-center mx-4">
                     <i class="fa-solid fa-play fa-sm"></i>
                     <i class="fa-solid fa-pause fa-sm"></i>
                     <i class="fa-solid fa-stop fa-sm"></i>
@@ -154,9 +183,9 @@
             </div>
         </div>
         <div id="partieScore">
-            <div class="offcanvas offcanvas-end d-flex align-items-center justify-content-center" tabindex="-1"
-                id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-scroll="true" data-bs-backdrop="false"
-                tabindex="-1">
+            <div class="offcanvas offcanvas-end d-none d-lg-flex align-items-center justify-content-center"
+                tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-scroll="true"
+                data-bs-backdrop="false" tabindex="-1">
                 <div id="scores">
                     <div class="offcanvas-header">
                         <h3 class="fs-1 fw-bold text-center text-uppercase">Tableau des scores</h3>
@@ -174,6 +203,19 @@
 
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tableau des scores</h1>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
                     </div>
                 </div>
             </div>

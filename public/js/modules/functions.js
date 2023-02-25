@@ -84,7 +84,10 @@ let dos = document.getElementsByClassName("dos");
 let doubleFace = document.getElementsByClassName("double-face");
 let cartes = document.getElementsByClassName("carte");
 let dernieresCartes = document.getElementsByClassName("derniere");
-let btnAfficherTableau = document.getElementById("btnAfficher");
+let btnAfficherTableau = document.querySelectorAll(".btnAfficher");
+let offcanvasBody = document.querySelector(".offcanvas-body");
+let modalBody = document.querySelector(".modal-body");
+let modalHeader = document.querySelector(".modal-header");
 let partieJeu = document.getElementById("partieJeu");
 let replayBtn = document.getElementById("replay");
 let col = document.querySelectorAll("col");
@@ -298,16 +301,25 @@ export const init = () => {
 
   /*****/
   const afficherTab = () => {
+    btnAfficherTableau = document.querySelectorAll(".btnAfficher");
     // Offcanvas Bootstrap
-
-    if (btnAfficherTableau.textContent.includes("Cacher")) {
-      btnAfficherTableau.textContent = "Afficher le tableau des scores";
-    } else {
-      btnAfficherTableau.textContent = "Cacher le tableau des scores";
-    }
+    btnAfficherTableau.forEach((bouton) => {
+      if (bouton.textContent.includes("Cacher")) {
+        bouton.textContent = "Afficher le tableau des scores";
+      } else {
+        bouton.textContent = "Cacher le tableau des scores";
+      }
+    });
   };
+  let btnAfficherScoreModalClone = btnAfficherTableau[1].cloneNode(true);
+  modalHeader.appendChild(btnAfficherScoreModalClone);
+  
+  btnAfficherTableau = document.querySelectorAll(".btnAfficher");
 
-  btnAfficherTableau.addEventListener("click", afficherTab);
+  btnAfficherTableau.forEach((bouton) => {
+    bouton.addEventListener("click", afficherTab);
+  });
+
   /*****/
 
   const retourneFace = (e) => {
@@ -590,8 +602,19 @@ export const nouvellePartie = () => {
 
 replayBtn.addEventListener("click", nouvellePartie);
 
+// Observe changes to the offcanvas body
+var observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    // Re-clone the offcanvas body and update the modal body
+    var newOffcanvasBodyClone = offcanvasBody.cloneNode(true);
+    modalBody.replaceChild(newOffcanvasBodyClone, modalBody.firstChild);
+  });
+});
+observer.observe(offcanvasBody, { childList: true, subtree: true });
+
 const artist1Logo = document.getElementById("artist1");
 const artist2Logo = document.getElementById("artist2");
+const separation = document.getElementById("separationMusic");
 
 function isPlaying(audioElement) {
   return !audioElement.paused;
@@ -602,7 +625,8 @@ const playMusic = () => {
     musics[indexMusic].play();
     artist1Logo.src = instancesMusiques[indexMusic].artiste1;
     artist2Logo.src = instancesMusiques[indexMusic].artiste2;
-    titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
+    separation.textContent = " - ";
+    titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
   }
 };
 
@@ -614,8 +638,9 @@ const pauseMusic = () => {
 
 const stopMusic = () => {
   musics[indexMusic].load();
-  artist1Logo.src = "";
-  artist2Logo.src = "";
+  artist1Logo.src = " ";
+  artist2Logo.src = " ";
+  separation.textContent = "";
   titre.textContent = "";
 };
 
@@ -632,7 +657,8 @@ const backMusic = () => {
     }
     artist1Logo.src = instancesMusiques[indexMusic].artiste1;
     artist2Logo.src = instancesMusiques[indexMusic].artiste2;
-    titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
+    separation.textContent = " - ";
+    titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
   }
 };
 
@@ -649,7 +675,8 @@ const nextMusic = () => {
   musics[indexMusic].play();
   artist1Logo.src = instancesMusiques[indexMusic].artiste1;
   artist2Logo.src = instancesMusiques[indexMusic].artiste2;
-  titre.textContent = " - " + instancesMusiques[indexMusic].titre.toUpperCase();
+  separation.textContent = " - ";
+  titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
 };
 
 const volumeDown = () => {
@@ -679,6 +706,53 @@ const volumeUp = () => {
 musics.forEach((music) => {
   music.addEventListener("ended", () => {
     nextMusic();
+  });
+});
+
+const musicList = document.querySelector(".musics-list");
+
+instancesMusiques.forEach((musique) => {
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  const img1 = document.createElement("img");
+  const img2 = document.createElement("img");
+  const span1 = document.createElement("span");
+  const span2 = document.createElement("span");
+
+  musicList.appendChild(li);
+  li.appendChild(a);
+  a.classList.add(
+    "dropdown-item",
+    "d-flex",
+    "justify-content-center",
+    "align-items-center"
+  );
+  a.href = "#";
+  a.id = instancesMusiques.indexOf(musique);
+  a.appendChild(img1);
+  a.appendChild(img2);
+  a.appendChild(span1);
+  a.appendChild(span2);
+
+  img1.src = musique.artiste1;
+  img2.src = musique.artiste2;
+  img1.style.width = "fit-content;";
+  img1.style.height = "30px";
+  img2.style.width = "fit-content;";
+  img2.style.height = "30px";
+  img2.className = "me-2";
+  span1.textContent = " - ";
+  span1.className = "me-2";
+  span2.textContent = musique.titre.toUpperCase();
+
+  a.addEventListener("click", () => {
+    musics[indexMusic].load();
+    indexMusic = a.id;
+    musics[indexMusic].play();
+    artist1Logo.src = instancesMusiques[indexMusic].artiste1;
+    artist2Logo.src = instancesMusiques[indexMusic].artiste2;
+    separation.textContent = " - ";
+    titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
   });
 });
 
