@@ -49,12 +49,12 @@ export const hover = new Audio(
 hover.volume = 0.02;
 
 let instancesMusiques = [
-  musiques.takinItBack,
-  musiques.liveAndLetDie,
-  musiques.dreams200,
   musiques.intoTheWild,
-  musiques.journey,
   musiques.oxygen,
+  musiques.liveAndLetDie,
+  musiques.takinItBack,
+  musiques.dreams200,
+  musiques.journey,
 ];
 
 let musics = [];
@@ -680,9 +680,11 @@ const volumeUp = () => {
     }
 };
 
-musics[indexMusic].addEventListener("ended", () => {
-  nextMusic();
-});
+musics.forEach(music => {
+  music.addEventListener("ended", () => {
+    nextMusic();
+  });
+})
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
