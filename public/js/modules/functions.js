@@ -85,6 +85,7 @@ let doubleFace = document.getElementsByClassName("double-face");
 let cartes = document.getElementsByClassName("carte");
 let dernieresCartes = document.getElementsByClassName("derniere");
 let btnAfficherTableau = document.querySelectorAll(".btnAfficher");
+let dropdownToggle = document.querySelector(".dropdown-toggle");
 let offcanvasBody = document.querySelector(".offcanvas-body");
 let modalBody = document.querySelector(".modal-body");
 let modalHeader = document.querySelector(".modal-header");
@@ -186,7 +187,12 @@ export const init = () => {
   };
 
   const videoPreGame = () => {
-    videoBg.volume = 0.3;
+    document.documentElement.requestFullscreen();
+    if (isPlaying(musics[indexMusic])) {
+      videoBg.volume = 0;
+    } else {
+      videoBg.volume = 0.3;
+    }
     videoBg.removeAttribute("loop");
     videoBg.src = "./public/video/ArtOfCreation.mp4";
     videoBg.load();
@@ -313,7 +319,7 @@ export const init = () => {
   };
   let btnAfficherScoreModalClone = btnAfficherTableau[1].cloneNode(true);
   modalHeader.appendChild(btnAfficherScoreModalClone);
-  
+
   btnAfficherTableau = document.querySelectorAll(".btnAfficher");
 
   btnAfficherTableau.forEach((bouton) => {
@@ -755,6 +761,27 @@ instancesMusiques.forEach((musique) => {
     titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
   });
 });
+
+// Ajouter un écouteur d'événements pour le clic sur le bouton de toggle
+dropdownToggle.addEventListener('click', (event) => {
+  // Lorsque le dropdown est ouvert, mettez les cartes en arrière-plan
+  if (event.target.getAttribute('aria-expanded') === 'true') {
+    [...cartes].forEach(carte => {
+      carte.style.zIndex = '-1';
+    });
+  }
+});
+
+// Ajouter un écouteur d'événements pour l'événement "hidden.bs.dropdown"
+dropdownToggle.addEventListener('hidden.bs.dropdown', () => {
+  // Lorsque le dropdown est fermé, ramenez les cartes à l'avant-plan
+  [...cartes].forEach(carte => {
+    carte.style.zIndex = '0';
+  });
+});
+
+
+
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
