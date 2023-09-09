@@ -428,6 +428,9 @@ export const init = () => {
           carte.style.pointerEvents = "none";
           carte.parentNode.style.cursor = "default";
           carte.parentNode.classList.add("match");
+          setTimeout(() => {
+            carte.parentNode.classList.add("d-none");
+          }, 3000)
           return (trouve = true);
         });
       }, 1500);
@@ -600,6 +603,7 @@ export const nouvellePartie = () => {
   });
   Array.from(cartes).forEach((carte) => {
     toggleClass(carte, "match");
+    toggleClass(carte, "d-none");
   });
   cartesTrouvees = [];
   selectDifficulty.value = "";
