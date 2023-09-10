@@ -22865,7 +22865,7 @@ body {
   font-family: "Luzia";
   font-size: 1.3rem;
   position: relative;
-  background-image: url("/public/img/AOC-Header-Portrait-Front-min.jpg");
+  background-image: url("https://raw.githubusercontent.com/Jihefel/jeu_paires/gh-pages/public/img/AOC-Header-Portrait-Front-min.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;

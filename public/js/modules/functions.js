@@ -234,7 +234,7 @@ export const init = () => {
       videoBg.volume = 0.3;
     }
     videoBg.removeAttribute("loop");
-    videoBg.src = "./public/video/ArtOfCreation.mp4";
+    videoBg.src = "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/video/ArtOfCreation.mp4";
     videoBg.load();
     removeAddClass(partieJeu, "opacity-100", "opacity-0");
     if (partieJeu.classList.contains("d-none")) {
