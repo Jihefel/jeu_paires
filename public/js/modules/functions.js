@@ -227,7 +227,7 @@ export const init = () => {
   };
 
   const videoPreGame = () => {
-    document.documentElement.webkitRequestFullscreen();
+    document.documentElement.requestFullscreen();
     if (isPlaying(musics[indexMusic])) {
       videoBg.volume = 0;
     } else {
