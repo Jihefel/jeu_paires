@@ -23219,6 +23219,7 @@ body .container-fluid .col-10, body .container-sm .col-10, body .container-md .c
   background: transparent;
   width: 25% !important;
   text-shadow: 0 0 3px #f7bf40;
+  color: #f7bf40;
   animation: effetCartes 1s ease-in-out infinite alternate-reverse;
   border: none !important;
 }
