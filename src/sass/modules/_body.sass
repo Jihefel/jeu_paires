@@ -1,7 +1,7 @@
 
 body
     width: 100%
-    min-height: 100vh
+    height: 100dvh
     color: $yellowAOC
     font-family: "Luzia"
     font-size: 1.3rem
@@ -9,15 +9,16 @@ body
     background-image: url("/public/img/AOC-Header-Portrait-Front-min.jpg")
     background-attachment: fixed
     background-size: cover
+    background-position: center
 
     video
         position: fixed
-        min-width: 100%
-        min-height: 100%
-        z-index: -1
-        bottom: 0
-        left: 50%
-        transform: translate(-50%)
+        object-fit: cover
+        object-position: bottom
+        width: inherit
+        height: 100dvh
+        z-index: -2
+        
     
     .container-fluid
         width: 100%

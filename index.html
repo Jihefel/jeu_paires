@@ -8,24 +8,30 @@
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="shortcut icon" href="./public/img/cropped-aoc-favicon-2020-32x32.png" type="image/png">
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <link rel="preload" href="./public/img/AOC-Artist-Front-Headhunterz-min.jpg" as="image" preloadStrategy="lazy">
+    <link rel="preload" href="./public/img/AOC-Artist-Front-Noisecontrollers-min.jpg" as="image" preloadStrategy="lazy">
+    <link rel="preload" href="./public/img/AOC-Artist-Front-Project-One-min.jpg" as="image" preloadStrategy="lazy">
+    <link rel="preload" href="./public/img/AOC-Artist-Front-Wildstylez-2021-Alt.png" as="image" preloadStrategy="lazy">
+    <link rel="preload" href="./public/img/dos-cartes.jpg" as="image" preloadStrategy="lazy">
+    <link rel="preload" href="./public/video/ArtOfCreation.mp4" as="fetch" type="video/mp4" preloadStrategy="lazy">
     <title>Jeu de mémoire - Art of Creation</title>
 </head>
 
 <body>
-    <video autoplay loop id="videoBg" src="./public/video/AOC-Header-Portrait-Front.mp4">
+    <video autoplay loop id="videoBg" src="./public/video/AOC-Header-Portrait-Front.mp4" data-autoplay="true">
     </video>
     <section id="topWrapper">
         <div class="backTop">
-            <div id="top" class="d-flex justify-content-around align-items-center">
-                <div class="titre d-flex align-items-center fs-6 ">
-                    <span class="titre-content d-flex justify-content-center align-items-center w-100">
-                        <div class="dropdown-center">
-                            <button class="dropdown-toggle text-white  me-1" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div id="top" class="d-flex justify-content-around align-items-center flex-wrap">
+                <div class="titre d-none d-md-block fs-6 order-5 order-md-first mt-3 mt-md-1">
+                    <span class="titre-content d-flex justify-content-center align-items-center flex-wrap">
+                        <div class="dropdown-center" data-bs-offset="800,500">
+                            <button class="dropdown-toggle text-white  me-lg-1" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-music fa-2xs"></i>
                             </button>
 
-                            <ul class="musics-list dropdown-menu dropdown-menu-dark p-3">
+                            <ul class="musics-list dropdown-menu p-3" data-bs-theme="dark">
 
                             </ul>
                         </div>
@@ -36,7 +42,7 @@
                     </span>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="me-5">
+                    <div class="me-lg-5">
                         <span id="chrono">00:00</span>
                     </div>
                     <button class="btn d-none d-lg-block btnAfficher" type="button" data-bs-toggle="offcanvas"
@@ -44,18 +50,28 @@
                         scores</button>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn d-lg-none btnAfficher" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop" style="color: #f7bf40; border: 1px solid #f7bf40;
-                    transition: 0.7s;
-                    filter: drop-shadow(0 0 3px #f7bf40);
-                    font-size: 67%;
-                    width: 215px;">
-                    Afficher le tableau des
-                        scores
-                </button>
+
+                <div class="btn-mobile d-lg-none">
+                    <button type="button" class="btn btnAfficher btn-mobile-afficher" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop" style="color: #f7bf40; border: 1px solid #f7bf40;
+                            transition: 0.7s;
+                            filter: drop-shadow(0 0 3px #f7bf40);
+                            font-size: 67%;
+                            width: fit-content;">
+                        <i class="fa-solid fa-ranking-star mt-1"></i>
+                    </button>
+                    <button class="btn btnMusic" style="color: #f7bf40; border: 1px solid #f7bf40;
+                        transition: 0.7s;
+                        filter: drop-shadow(0 0 3px #f7bf40);
+                        font-size: 67%;
+                        width: fit-content;">
+                        <i class="fa-solid fa-music"></i>
+                    </button>
+                </div>
 
 
-                <div class="musicbtn d-flex gap-3 align-items-center mx-4">
+
+                <div class="musicbtn d-none d-lg-flex gap-3 align-items-center mx-4 order-last pt-4 pb-3 py-lg-0">
                     <i class="fa-solid fa-play fa-sm"></i>
                     <i class="fa-solid fa-pause fa-sm"></i>
                     <i class="fa-solid fa-stop fa-sm"></i>
@@ -95,86 +111,67 @@
                     <button class="btn d-none" id="replay">Nouvelle partie</button>
                 </div>
                 <div class="grille row d-flex gap-3 justify-content-center">
-                    <div class="ligneCarte row row-cols-4 mt-2">
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face position-relative">
-                                    <div class="dos d-flex justify-content-center "></div>
-                                    <div class="face d-flex justify-content-center  d-none">
-                                    </div>
+                    <div class="ligneCarte d-flex flex-wrap align-items-center justify-content-center mt-2">
+                        <div class="carte">
+                            <div class="double-face position-relative">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte derniere">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="carte">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                    <div class="ligneCarte row row-cols-4">
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte derniere">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="carte derniere">
-                                <div class="double-face">
-                                    <div class="dos d-flex justify-content-center"></div>
-                                    <div class="face d-flex justify-content-center d-none">
+                        <div class="carte derniere">
+                            <div class="double-face">
+                                <div class="dos d-flex justify-content-center"></div>
+                                <div class="face d-flex justify-content-center d-none">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +204,8 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">

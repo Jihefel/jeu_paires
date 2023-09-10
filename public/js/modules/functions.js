@@ -23,42 +23,32 @@ export let imagesDifficiles = [
 ];
 
 // Déclaration audio
-export const headhunterz = new Audio(
-  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/headhunterz_notif.mp3?raw=true"
-);
+export const headhunterz = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/headhunterz_notif.mp3?raw=true");
 headhunterz.volume = 0.5;
 
-export const wildstylez = new Audio(
-  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/wildstylez.mp3?raw=true"
-);
+export const wildstylez = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/wildstylez.mp3?raw=true");
 wildstylez.volume = 0.25;
 
-export const noisecontrollers = new Audio(
-  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/noisecontrollers.mp3?raw=true"
-);
+export const noisecontrollers = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/noisecontrollers.mp3?raw=true");
 noisecontrollers.volume = 0.25;
 
-export const projectOne = new Audio(
-  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/projectOne.mp3?raw=true"
-);
+export const projectOne = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/projectOne.mp3?raw=true");
 projectOne.volume = 0.5;
 
-export const hover = new Audio(
-  "https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/hover.mp3?raw=true"
-);
+export const hover = new Audio("https://github.com/Jihefel/jeu_paires/blob/gh-pages/public/audio/hover.mp3?raw=true");
 hover.volume = 0.02;
 
 let instancesMusiques = [
-  musiques.untamable,
   musiques.leapOfFaith,
+  musiques.untamable,
+  musiques.takinItBack,
   musiques.liveAndLetDie,
   musiques.intoTheWild,
   musiques.holdMeClose,
   musiques.oxygen,
   musiques.dreams200,
   musiques.journey,
-  musiques.takinItBack,
-  musiques.beforeIWake
+  musiques.beforeIWake,
 ];
 
 let musics = [];
@@ -82,21 +72,24 @@ let difficulty = document.getElementById("difficulty");
 let selectDifficulty = document.getElementById("select-difficulty");
 let validDifficulty = document.getElementById("valid-difficulty");
 let chrono = document.getElementById("chrono");
-let lignesCartes = document.querySelectorAll(".ligneCarte");
+let ligneCartes = document.querySelector(".ligneCarte");
 let faces = document.getElementsByClassName("face");
 let dos = document.getElementsByClassName("dos");
 let doubleFace = document.getElementsByClassName("double-face");
 let cartes = document.getElementsByClassName("carte");
 let dernieresCartes = document.getElementsByClassName("derniere");
 let btnAfficherTableau = document.querySelectorAll(".btnAfficher");
+let btnMobile = document.querySelectorAll(".btn-mobile-afficher");
+let btnMusic = document.querySelector(".btnMusic");
 let dropdownToggle = document.querySelector(".dropdown-toggle");
 let offcanvasBody = document.querySelector(".offcanvas-body");
 let modalBody = document.querySelector(".modal-body");
 let modalHeader = document.querySelector(".modal-header");
 let partieJeu = document.getElementById("partieJeu");
 let replayBtn = document.getElementById("replay");
-let col = document.querySelectorAll("col");
 let titre = document.querySelector("#titre");
+let titreComplet = document.querySelector(".titre");
+let controlMusic = document.querySelector(".musicbtn");
 let btnPlay = document.querySelector(".fa-play");
 let btnPause = document.querySelector(".fa-pause");
 let btnStop = document.querySelector(".fa-stop");
@@ -104,16 +97,13 @@ let btnBack = document.querySelector(".fa-backward-step");
 let btnNext = document.querySelector(".fa-forward-step");
 let btnVolDown = document.querySelector(".fa-volume-down");
 let btnVolUp = document.querySelector(".fa-volume-high");
+const nbCartesNormal = 6;
+const nbCartesDifficile = 8;
 
 let tableauDernieresCartes = [];
 Array.from(dernieresCartes).forEach((derniere) => {
   tableauDernieresCartes.push(derniere);
 });
-
-let dernieresCol = [];
-for (let i = 0; i < lignesCartes.length; i++) {
-  dernieresCol.push(lignesCartes[i].lastElementChild);
-}
 
 function toggleClass(element, classe) {
   element.classList.toggle(classe);
@@ -148,6 +138,57 @@ selectDifficulty.addEventListener("change", (e) => {
   difficulte = e.target.value;
 });
 
+/*****/
+const afficherTab = () => {
+  btnAfficherTableau = document.querySelectorAll(".btnAfficher");
+  // Offcanvas Bootstrap
+  btnAfficherTableau.forEach((bouton) => {
+    if (bouton.textContent.includes("Cacher")) {
+      bouton.textContent = "Afficher le tableau des scores";
+    } else if (bouton.textContent.includes("Afficher")) {
+      bouton.textContent = "Cacher le tableau des scores";
+    }
+  });
+};
+
+let btnAfficherScoreModalClone = btnAfficherTableau[1].cloneNode(true);
+modalHeader.appendChild(btnAfficherScoreModalClone);
+
+btnAfficherTableau = document.querySelectorAll(".btnAfficher");
+
+btnAfficherTableau.forEach((bouton) => {
+  bouton.addEventListener("click", afficherTab);
+});
+
+const changerIcone = () => {
+  btnMobile = document.querySelectorAll(".btn-mobile-afficher");
+
+  btnMobile.forEach((bouton) => {
+    if (bouton.firstElementChild.classList.contains("fa-xmark")) {
+      console.log("ok");
+      removeAddClass(bouton.firstElementChild, "fa-xmark", "fa-ranking-star");
+    } else if (bouton.firstElementChild.classList.contains("fa-ranking-star")) {
+      removeAddClass(bouton.firstElementChild, "fa-ranking-star", "fa-xmark");
+    }
+  });
+};
+
+btnMobile = document.querySelectorAll(".btn-mobile-afficher");
+
+btnMobile.forEach((btn) => {
+  btn.addEventListener("click", changerIcone);
+});
+
+const afficherOptionsMusique = () => {
+  toggleClass(titreComplet, "d-none");
+  if (controlMusic.classList.contains("d-flex")) {
+    removeAddClass(controlMusic, "d-flex", "d-none");
+  } else {
+    removeAddClass(controlMusic, "d-none", "d-flex");
+  }
+};
+/*****/
+
 export const init = () => {
   const tbody = document.querySelector("tbody");
   const tr = document.createElement("tr");
@@ -170,18 +211,13 @@ export const init = () => {
   const setPseudo = () => {
     if (inputPseudo.value === "") {
       return;
-    } else if (
-      inputPseudo.value === null ||
-      inputPseudo.value === undefined ||
-      inputPseudo.value.length < 4
-    ) {
+    } else if (inputPseudo.value === null || inputPseudo.value === undefined || inputPseudo.value.length < 4) {
       inputPseudo.placeholder = "Introduisez un pseudo plus grand";
       inputPseudo.value = "";
       return;
     } else {
       pseudo = inputPseudo.value;
-      pseudo =
-        pseudo.charAt(0).toUpperCase() + pseudo.substring(1).toLowerCase();
+      pseudo = pseudo.charAt(0).toUpperCase() + pseudo.substring(1).toLowerCase();
       pseudoTableau[ligneJoueur].textContent = pseudo;
       removeAddClass(difficulty, "d-none", "d-flex");
       if (difficulty.classList.contains("d-flex")) {
@@ -200,10 +236,10 @@ export const init = () => {
     videoBg.removeAttribute("loop");
     videoBg.src = "./public/video/ArtOfCreation.mp4";
     videoBg.load();
+    removeAddClass(partieJeu, "opacity-100", "opacity-0");
     if (partieJeu.classList.contains("d-none")) {
       partieJeu.classList.remove("d-none");
     }
-    removeAddClass(partieJeu, "opacity-100", "opacity-0");
     Array.from(cartes).forEach((carte) => {
       carte.classList.add("apparition");
     });
@@ -227,46 +263,34 @@ export const init = () => {
       // Mode normal
       case "1":
         difficulteTableau[ligneJoueur].textContent = "Normal";
-        lignesCartes.forEach((ligne) => {
-          if (ligne.classList.contains("row-cols-4")) {
-            removeAddClass(ligne, "row-cols-4", "row-cols-3");
-          }
-        });
         // Suppression de Project One
         imagesFace = imagesNormal.slice();
         // Suppression des 2 cartes supplémentaires
-        dernieresCol.forEach((col) => {
-          toggleClass(col, "d-none");
-        });
+        if (cartes.length !== nbCartesNormal) {
+          tableauDernieresCartes.forEach((carte) => {
+            carte.remove();
+          });
+        }
         videoPreGame();
         removeAddClass(difficulty, "d-flex", "d-none");
-        // Suppression des dernières
-        if (col.length < 6)
-          dernieresCol.forEach((col) => {
-            col.remove();
-          });
         nombreCartesATrouver = imagesFace.length;
         break;
 
       // Mode difficile
       case "2":
         difficulteTableau[ligneJoueur].textContent = "Difficile";
-        lignesCartes.forEach((ligne) => {
-          if (ligne.classList.contains("row-cols-3")) {
-            removeAddClass(ligne, "row-cols-3", "row-cols-4");
-          }
+        if (cartes.length !== nbCartesDifficile) {
+          tableauDernieresCartes.forEach((derniere) => {
+            ligneCartes.appendChild(derniere);
+          });
+        }
+        Array.from(cartes).forEach((carte) => {
+          carte.classList.add("difficile");
         });
         videoPreGame();
         removeAddClass(difficulty, "d-flex", "d-none");
         imagesFace = imagesDifficiles.slice();
         nombreCartesATrouver = imagesFace.length;
-        if (col.length != 8)
-          for (let i = 0; i < lignesCartes.length; i++) {
-            lignesCartes[i].appendChild(dernieresCol[i]);
-            if (dernieresCol[i].classList.contains("d-none")) {
-              dernieresCol[i].classList.remove("d-none");
-            }
-          }
         break;
 
       default:
@@ -309,29 +333,6 @@ export const init = () => {
   };
   /*****/
 
-  /*****/
-  const afficherTab = () => {
-    btnAfficherTableau = document.querySelectorAll(".btnAfficher");
-    // Offcanvas Bootstrap
-    btnAfficherTableau.forEach((bouton) => {
-      if (bouton.textContent.includes("Cacher")) {
-        bouton.textContent = "Afficher le tableau des scores";
-      } else {
-        bouton.textContent = "Cacher le tableau des scores";
-      }
-    });
-  };
-  let btnAfficherScoreModalClone = btnAfficherTableau[1].cloneNode(true);
-  modalHeader.appendChild(btnAfficherScoreModalClone);
-
-  btnAfficherTableau = document.querySelectorAll(".btnAfficher");
-
-  btnAfficherTableau.forEach((bouton) => {
-    bouton.addEventListener("click", afficherTab);
-  });
-
-  /*****/
-
   const retourneFace = (e) => {
     e.target.parentNode.classList.toggle("retourneFace");
     quellesCartesCliquees[0].parentNode.classList.toggle("retourneFace");
@@ -351,16 +352,21 @@ export const init = () => {
     }
   };
 
+  const visuallyHidden = (element1, element2) => {
+    element1.classList.toggle("visually-hidden");
+    element1.nextElementSibling.classList.toggle("d-none");
+    if (element2) {
+      element2.classList.toggle("visually-hidden");
+      element2.nextElementSibling.classList.toggle("d-none");
+    }
+  };
+
   const help = () => {
     const cartesFace = [...faces];
     if (essais == 2) {
       for (let i = 0; i < cartesFace.length; i++) {
-        if (
-          cartesFace[i].style.backgroundImage ===
-          quellesCartesCliquees[0].nextElementSibling.style.backgroundImage
-        ) {
-          cartesFace[i].parentNode.style.filter =
-            "drop-shadow(0 0 15px #6B0F1A)";
+        if (cartesFace[i].style.backgroundImage === quellesCartesCliquees[0].nextElementSibling.style.backgroundImage) {
+          cartesFace[i].parentNode.style.filter = "drop-shadow(0 0 15px #6B0F1A)";
         }
       }
     } else if (essais > 2) {
@@ -376,15 +382,9 @@ export const init = () => {
   };
 
   const verifCartes = (carte1, carte2) => {
-    if (
-      carte1.nextElementSibling.style.backgroundImage ===
-      carte2.nextElementSibling.style.backgroundImage
-    ) {
+    if (carte1.nextElementSibling.style.backgroundImage === carte2.nextElementSibling.style.backgroundImage) {
       cartesTrouvees.push(carte1.parentNode, carte2.parentNode);
-      bgCarteMatch = carte1.nextElementSibling.style.backgroundImage.substring(
-        5,
-        carte1.nextElementSibling.style.backgroundImage.length - 2
-      );
+      bgCarteMatch = carte1.nextElementSibling.style.backgroundImage.substring(5, carte1.nextElementSibling.style.backgroundImage.length - 2);
       nombreCartesATrouver -= 2;
       // Fin de partie
       if (nombreCartesATrouver === 0) {
@@ -392,11 +392,7 @@ export const init = () => {
           arreter();
           tempsTableau[ligneJoueur].textContent = chrono.textContent;
           setTimeout(() => {
-            removeAddClass(
-              document.getElementsByClassName("grille")[0],
-              "d-flex",
-              "d-none"
-            );
+            removeAddClass(document.getElementsByClassName("grille")[0], "d-flex", "d-none");
             toggleClass(replayBtn, "d-none");
           }, 2000);
         }, 3000);
@@ -429,8 +425,8 @@ export const init = () => {
           carte.parentNode.style.cursor = "default";
           carte.parentNode.classList.add("match");
           setTimeout(() => {
-            carte.parentNode.classList.add("d-none");
-          }, 3000)
+            carte.parentNode.classList.add("invisible");
+          }, 3000);
           return (trouve = true);
         });
       }, 1500);
@@ -572,8 +568,8 @@ const reset = () => {
 /*** CHRONO ****/
 
 export const nouvellePartie = () => {
-  container.style.background =
-    "linear-gradient(180deg, #131313cc, rgba(214, 195, 85, 0.16) 100%)";
+  container.style.background = "linear-gradient(180deg, #131313cc, rgba(214, 195, 85, 0.16) 100%)";
+  inputPseudo.placeholder = "";
   inputPseudo.value = "";
   // Bouton disparaît
   toggleClass(replayBtn, "d-none");
@@ -582,11 +578,7 @@ export const nouvellePartie = () => {
   removeAddClass(start, "d-none", "d-flex");
   toggleClass(getPseudo, "d-none");
   toggleClass(partieJeu, "d-none");
-  removeAddClass(
-    document.getElementsByClassName("grille")[0],
-    "d-none",
-    "d-flex"
-  );
+  removeAddClass(document.getElementsByClassName("grille")[0], "d-none", "d-flex");
   Array.from(dos).forEach((dos) => {
     toggleClass(dos, "d-none");
   });
@@ -603,7 +595,10 @@ export const nouvellePartie = () => {
   });
   Array.from(cartes).forEach((carte) => {
     toggleClass(carte, "match");
-    toggleClass(carte, "d-none");
+    toggleClass(carte, "invisible");
+    if (carte.classList.contains("difficile")) {
+      carte.classList.remove("difficile");
+    }
   });
   cartesTrouvees = [];
   selectDifficulty.value = "";
@@ -641,6 +636,7 @@ const playMusic = () => {
     artist2Logo.src = instancesMusiques[indexMusic].artiste2;
     separation.textContent = " - ";
     titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
+    btnMusic.classList.add("border-danger");
   }
 };
 
@@ -656,6 +652,7 @@ const stopMusic = () => {
   artist2Logo.src = " ";
   separation.textContent = "";
   titre.textContent = "";
+  btnMusic.classList.remove("border-danger");
 };
 
 const backMusic = () => {
@@ -735,12 +732,7 @@ instancesMusiques.forEach((musique) => {
 
   musicList.appendChild(li);
   li.appendChild(a);
-  a.classList.add(
-    "dropdown-item",
-    "d-flex",
-    "justify-content-center",
-    "align-items-center"
-  );
+  a.classList.add("dropdown-item", "d-flex", "justify-content-center", "align-items-center");
   a.href = "#";
   a.id = instancesMusiques.indexOf(musique);
   a.appendChild(img1);
@@ -752,7 +744,7 @@ instancesMusiques.forEach((musique) => {
   img2.src = musique.artiste2;
   img1.style.width = "fit-content;";
   img1.style.height = "30px";
-  img1.className = "me-1"
+  img1.className = "me-1";
 
   img2.style.width = "fit-content;";
   img2.style.height = "30px";
@@ -760,7 +752,7 @@ instancesMusiques.forEach((musique) => {
   span1.textContent = " - ";
   span1.className = "me-3";
   span2.textContent = musique.titre.toUpperCase();
-  span2.className = "music-title"
+  span2.className = "music-title";
 
   a.addEventListener("click", () => {
     musics[indexMusic].load();
@@ -770,29 +762,27 @@ instancesMusiques.forEach((musique) => {
     artist2Logo.src = instancesMusiques[indexMusic].artiste2;
     separation.textContent = " - ";
     titre.textContent = instancesMusiques[indexMusic].titre.toUpperCase();
+    btnMusic.classList.add("border-danger");
   });
 });
 
 // Ajouter un écouteur d'événements pour le clic sur le bouton de toggle
-dropdownToggle.addEventListener('click', (event) => {
+dropdownToggle.addEventListener("click", (event) => {
   // Lorsque le dropdown est ouvert, mettez les cartes en arrière-plan
-  if (event.target.getAttribute('aria-expanded') === 'true') {
-    [...cartes].forEach(carte => {
-      carte.style.zIndex = '-1';
+  if (event.target.getAttribute("aria-expanded") === "true") {
+    [...cartes].forEach((carte) => {
+      carte.style.zIndex = "-1";
     });
   }
 });
 
 // Ajouter un écouteur d'événements pour l'événement "hidden.bs.dropdown"
-dropdownToggle.addEventListener('hidden.bs.dropdown', () => {
+dropdownToggle.addEventListener("hidden.bs.dropdown", () => {
   // Lorsque le dropdown est fermé, ramenez les cartes à l'avant-plan
-  [...cartes].forEach(carte => {
-    carte.style.zIndex = '0';
+  [...cartes].forEach((carte) => {
+    carte.style.zIndex = "0";
   });
 });
-
-
-
 
 btnPlay.addEventListener("click", playMusic);
 btnPause.addEventListener("click", pauseMusic);
@@ -801,3 +791,4 @@ btnBack.addEventListener("click", backMusic);
 btnNext.addEventListener("click", nextMusic);
 btnVolDown.addEventListener("click", volumeDown);
 btnVolUp.addEventListener("click", volumeUp);
+btnMusic.addEventListener("click", afficherOptionsMusique);
